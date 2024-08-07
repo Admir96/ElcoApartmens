@@ -1,49 +1,33 @@
-import './pages.css'
+function Apartments() {
+  return (
+    <section className="page-section bg-dark text-white">
+    <h2 className="text-center">Apartments</h2>
+    <hr></hr>
+ <div className="row row-cols-1 row-cols-md-2 m-2 g-4 ">
+  <div className="col">
+    <div className="card border-0">
+      <img src ="src/assets/img/ap1.jpg" height="200px"className="card-img-top border border-1" alt="Aprartman1"></img>
+      <div className="card-body bg-dark text-white">
+        <h5 className="card-title">Card title</h5>
+        <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+  <div className="col">
+    <div className="card border-0">
+      <img src="src/assets/img/ap1.jpg" height="200px" className="card-img-top border border-1" alt="Apartman2"></img>
+      <div className="card-body bg-dark text-white">
+        <h5 className="card-title">Card title</h5>
+        <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      </div>
+    </div>
+  </div>
+</div>
+     <hr></hr>
+</section>
 
-
-function apartmens() {
-
-    return(
-      <>      
-            <div className="container px-4 px-lg-5 text-center">
-                <h2 className="mb-4">Free Download at Start Bootstrap!</h2>
-                <a className="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>
-            </div>
-
-
-            <div className="container px-4 px-lg-5">
-                <h2 className="text-center mt-0">At Your Service</h2>
-                <hr className="divider" />
-                <div className="row gx-4 gx-lg-5">
-                    <div className="col-lg-3 col-md-6 text-center">
-                        <div className="mt-5">
-                            <div className="mb-2"><i className="bi-gem fs-1 text-primary"></i></div>
-                            <h3 className="h4 mb-2">Sturdy Themes</h3>
-                            <p className="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6 text-center">
-                        <div className="mt-5">
-                            <div className="mb-2"><i className="bi-laptop fs-1 text-primary"></i></div>
-                            <h3 className="h4 mb-2">Up to Date</h3>
-                            <p className="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
-                        </div>
-                    </div>
-                    <div className="col-lg-3 col-md-6 text-center">
-                        <div className="mt-5">
-                            <div className="mb-2"><i className="bi-globe fs-1 text-primary"></i></div>
-                            <h3 className="h4 mb-2">Ready to Publish</h3>
-                            <p className="text-muted mb-0">You can use this design as is, or you can make changes!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <section className="page-section bg-dark text-white">
-                <div className="container px-4 px-lg-5 text-center">
-                    <h2 className="mb-4">Free Download at Start Bootstrap!</h2>
-                    <a className="btn btn-light btn-xl" href="https://startbootstrap.com/theme/creative/">Download Now!</a>
-                </div>
-            </section></>
-    )
+ 
+  );
 }
-export default apartmens
+
+export default Apartments;

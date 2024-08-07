@@ -1,16 +1,14 @@
 import Contact from './contact'
 import Apartments from './apartmens'
-import './pages.css'
 import About from './about';
 import Slider from '../Components/slider/slider';
 
-const home =() =>{
+function home() {
 
-    return(
-    
-         <body id="page-top">
+    return( 
+    <body>   
       <Slider></Slider>
-  <About></About>
+      <About></About>
     <Apartments></Apartments>
     <Contact></Contact>
     </body>
