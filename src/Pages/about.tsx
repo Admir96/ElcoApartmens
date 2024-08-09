@@ -1,7 +1,6 @@
 import './pages.css'
 import Gallery from '../Components/gallery/gallery'
 
-
 function about(){
     return(  
           <section className='container'>

@@ -1,6 +1,5 @@
-import { Form } from "react-bootstrap";
-import ContactForm from "../Components/contactForm/contact";
 
+import ContactForm from "../Components/contactForm/contact";
 function Contact(){
 
   return (
@@ -10,4 +9,4 @@ function Contact(){
   );
 };
 
-export default ContactForm;
+export default Contact;
