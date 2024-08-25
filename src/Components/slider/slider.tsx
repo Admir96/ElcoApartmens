@@ -4,7 +4,7 @@ import { MDBCarousel, MDBCarouselItem, MDBCarouselCaption } from 'mdb-react-ui-k
   return (
     <MDBCarousel showIndicators showControls fade>
       <MDBCarouselItem itemId={1}>
-        <img src='https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg' className='d-block w-100 vh-100' alt='First Slider' />
+        <img src='https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg' className='d-block w-100 vh-100'alt='First Slider' />
         <MDBCarouselCaption>
           <h5>First slide label</h5>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
