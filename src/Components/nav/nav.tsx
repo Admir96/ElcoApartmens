@@ -34,13 +34,13 @@ const  nav = () =>  {
     
      <section id="scrollspyHeading1"><Home/></section>
 
-        <section id="scrollspyHeading2"><About/></section>
+        <section  style={{backgroundColor:'#eee'}} id="scrollspyHeading2"><About/></section>
      
         <section id="scrollspyHeading3"><Apartments/></section>
         
         <section id="scrollspyHeading4"><Contact/></section>  
        
-        <div className="" style={{paddingTop:'55px',backgroundColor:'#eee'}}>
+        <div style={{paddingTop:'55px',backgroundColor:'#eee'}}>
       <Footer/>
      </div>
       </div>   
