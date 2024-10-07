@@ -1,24 +1,21 @@
-import About from '../../Pages/about';
 import Apartments from '../../Pages/apartmens';
 import Contact from '../../Pages/contact';
 import Home from '../../Pages/home';
 import Footer from '../footer/footer';
+import ApartmentDetail from '../../Pages/apartmentDetail';
 
 const  nav = () =>  {
 
     return(
         <>
-    <nav className="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <nav className="navbar navbar-expand-lg navbar-light fixed-top py-4" id="mainNav">
         <div className="container px-4 px-lg-5">
-            <a className="navbar-brand" href="#page-top">Start Bootstrap</a>
+            <a className="navbar-brand p-0" style={{position:'absolute', left:'15.5%'}} href="#page-top">Start Bootstrap</a>
             <button className="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
-                <ul className="navbar-nav ms-auto my-2 my-lg-0">
+                <ul className="navbar-nav ms-auto my-2 my-lg-0 align-righ" style={{position:'absolute', right:'15.5%'}}>
           <li className="nav-item">
             <a className="nav-link" href="#scrollspyHeading1">Home</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#scrollspyHeading2">Gallery</a>
           </li>
           <li className="nav-item">
             <a className="nav-link" href="#scrollspyHeading3">Apartments</a>
@@ -34,13 +31,13 @@ const  nav = () =>  {
     
      <section id="scrollspyHeading1"><Home/></section>
 
-        <section  style={{backgroundColor:'#eee'}} id="scrollspyHeading2"><About/></section>
-     
         <section id="scrollspyHeading3"><Apartments/></section>
-        
+
         <section id="scrollspyHeading4"><Contact/></section>  
+        
+        <section id="scrollspyHeading4"><ApartmentDetail/></section>  
        
-        <div style={{paddingTop:'55px',backgroundColor:'#eee'}}>
+        <div style={{paddingTop:'45px',backgroundColor:'#eee'}}>
       <Footer/>
      </div>
       </div>   

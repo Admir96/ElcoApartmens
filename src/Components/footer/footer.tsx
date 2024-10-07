@@ -41,8 +41,7 @@ function footer() {
         
                     <MDBCol md="2" lg="3" xl="3" className='mx-auto mb-4'>
                     <h6 className='text-uppercase fw-bold mb-4'> Company Name </h6>
-                    <p>Ovo je firma pocela 1992 pocetkom rata i radi sve do danas slavimo cest pobjedu nas srpskim extremistima jevbo im bog MDBContainer et
-                      ne znam sta vise da pisem. bibibibibi bgbf  
+                    <p>Ovo je firma pocela 1992 pocetkom rata i radi sve do danas slavimo cest pobjedu nas napredak i dobro raspolozenje radnika, ubise se od posla.
                     </p>
                    </MDBCol>
 
