@@ -6,11 +6,11 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 
       return (
         <div className="p-5" style={{ backgroundColor: '#eee'}} id="venue">
-          <div className="container">
+          <div className="container" style={{width:'70%'}}>
             <div className="row animate-in-down p-4 rounded" style={{ backgroundColor: '#fff' }}>
               <div className="p-5 col-md-6 align-center">
-                <p className="m-0">Feel comfortable, and purchase items</p>
-                <h2>Discover the products</h2>
+                <h1 className=''>Feel comfortable, and purchase items</h1>
+           
                 <p className="my-4">
                   It is a long established fact that a reader will be distracted by the readable content of a page
                   when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
@@ -20,7 +20,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
                 <div id="carousel1" className="carousel slide">
                   <div className="carousel-inner">
                     <div className="carousel-item">
-                      <img className="d-block img-fluid w-100 rounded" src="https://i.imgur.com/K7A78We.jpg" alt="first slide" />
+                      <img className="d-block img-fluid w-100 h-auto rounded" src="https://i.imgur.com/K7A78We.jpg" alt="first slide" />
                       <div className="carousel-caption">
                        
                         <h3>Simura Hotels</h3>
@@ -28,14 +28,14 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
                       </div>
                     </div>
                     <div className="carousel-item active">
-                      <img className="d-block img-fluid w-100 rounded" src="https://i.imgur.com/c8952Iz.jpg" />
+                      <img className="d-block img-fluid w-100 h-auto rounded" src="https://i.imgur.com/K7A78We.jpg" />
                       <div className="carousel-caption">
                         <h3>Hauzkhas Village Bar</h3>
                         <p>Enjoy our long drink</p>
                       </div>
                     </div>
                     <div className="carousel-item">
-                      <img className="d-block img-fluid w-100 rounded" src="https://i.imgur.com/K7A78We.jpg" />
+                      <img className="d-block img-fluid w-100 h-auto rounded" src="https://i.imgur.com/K7A78We.jpg" />
                       <div className="carousel-caption">
                         <h3>Cooking Hemorto</h3>
                         <p>Tastes it better</p>

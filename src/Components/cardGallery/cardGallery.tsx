@@ -7,11 +7,11 @@ import React from "react";
   
   const Gallery: React.FC <GalleryProps> = ({ images, id }) =>  {
             return (
-                <div id= {id} className="carousel slide" data-bs-ride="carousel">
+                <div id= {id} className="carousel slide"style={{height:'150px'}} data-bs-ride="carousel">
                 <div className="carousel-inner"style={{height:'250px'}}>
                     {images.map((image, index) => (
                         <div className={`carousel-item ${index === 0 ? 'active' : ''}`} key={index}>
-                            <img src={image} className="d-block w-100" style={{height:'fit'}} alt={`Slide ${index + 1}`} />
+                            <img src={image} className="img-fluid w-100 h-100" alt={`Slide ${index + 1}`} />
                         </div>
                     ))}
                 </div>

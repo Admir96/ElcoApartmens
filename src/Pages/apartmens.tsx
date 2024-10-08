@@ -18,20 +18,20 @@ const Apartments: React.FC = () => {
   return (
 
     <div className='container mt-5'>
-      <div className=" justify-content-center mb-3">
+      <div className=" justify-content-center mb-4" >
         <div className="col">
           <div className="card-body shadow-0 border rounded-3">
-              <div className="card flex-row">
+              <div className="card flex-row" style={{height:'154px'}}>
             
-                <div className=" col card-img-left example-card-img-responsive">
+                <div className=" col card-img-left example-card-img-responsive"style={{height:'154px'}}>
                  
           
-                      <Gallery images = {imagesForGallery1} id = "imageGallery1"/>       
+                      <Gallery  images = {imagesForGallery1} id = "imageGallery1"/>       
                  
                             
                 </div>
                 
-                <div className="col-5 m-4">
+                <div className="col-5 m-4"style={{height:'154px'}}>
                   <h5 className="card-title">Apartman 2</h5>
       
                   <p className="card-text mb-4 mb-md-0">
@@ -46,10 +46,10 @@ const Apartments: React.FC = () => {
                   className="col p-4 m-4 border-sm-start-none border-start"
                 >
                   <div className="d-flex flex-row align-items-center mb-1">
-                    <h4 className="mb-1 me-1">$13.99</h4>
+
                   </div>
-                  <div className="d-flex flex-column mt-4">
-                    <a href="#"  className="btn btn-outline-primary text-center">
+                  <div className="d-flex flex-column" style={{height:'154px'}}>
+                  <a href="#"  className="btn btn-primary text-center" style={{backgroundColor:'#FF385C', border:'none'}}>
                       Details
                     </a>
                   </div> 
@@ -62,14 +62,14 @@ const Apartments: React.FC = () => {
       <div className="row justify-content-center mb-3">
         <div className="col">
           <div className="card-body shadow-0 border rounded-3">
-          <div className="card flex-row">
+          <div className="card flex-row" style={{height:'154px'}}>
             
             <div className="col card-img-left example-card-img-responsive">
              
                 <Gallery images={imagesForGallery2} id = "imageGallery2"/>       
 
                 </div>
-                <div className="col-5 m-4">
+                <div className="col-5 m-4" style={{height:'154px'}}>
                   <h5 className="card-title">Apartman 1</h5>               
                   <p className="card-text mb-4 mb-md-0">
                     There are many variations of passages of Lorem Ipsum
@@ -83,10 +83,10 @@ const Apartments: React.FC = () => {
                   className="col p-4 m-4 border-sm-start-none border-start"
                 >
                   <div className="d-flex flex-row align-items-center mb-1">
-                    <h4 className="mb-1 me-1">$14.99</h4>
+  
                   </div>
-                  <div className="d-flex flex-column mt-4">
-                    <a href="#"  className="btn btn-outline-primary text-center">
+                  <div className="d-flex flex-column " style={{height:'154px'}}>
+                    <a href="#"  className="btn btn-primary text-center" style={{backgroundColor:'#FF385C', border:'none'}}>
                       Details
                     </a>
                   </div>

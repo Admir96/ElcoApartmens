@@ -10,19 +10,36 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-form,span,a,p,h1,h2,h3,h4,h5,h6, label, .placeholder{
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",
-  sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
-  font-size: 1rem !important;
+form,span,p,h1,h2,h3,h4,h5,h6, label, .placeholder{
+  font-family: Airbnb Cereal VF, Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif !important;
+  font-size: 0.9rem !important;
   font-weight: 400 !important;
-  line-height: 1.5 !important;
-  color: #212529 !important;
+  line-height: 1.25 !important;
+  color: #222222 !important;
   text-align: left !important;
+}
+
+a{
+  color: #fff;
+}
+li a{
+  color: #2222 !important;
+}
+li a:hover{
+  color: #FF385C !important;
+}
+.card-title {
+ 
+  font-size: 1.3rem !important;
+  color: #FF385C !important;
+  font-weight: 500;
 
 }
-a:hover, .mailh:hover{
-  color:rgb(96, 157, 208) !important;
+
+.card-text{
+  color: #222222 !important;
 }
+.navbar-brand:hover{color: #FF385C !important;}
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -3654,21 +3671,12 @@ textarea.form-control-lg {
   cursor: pointer;
 }
 .card:hover{
-  transform: scale(1.03);
-  border-color: #0d6efd !important;
+  transform: scale(1.02);
 }
 .card-body {
   flex: 1 1 auto;
   padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
   color: var(--bs-card-color);
-}
-.card-title {
-  margin-bottom: 0px;
-  color: #5b9dfe !important;
-}
-.card-body:hover .card-title{
-  display: block;
-  line-height: 4px;
 }
 
 .card-link + .card-link {
