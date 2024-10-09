@@ -28,7 +28,6 @@ const Calendar: React.FC = () => {
 
     return (
         <Container className="mt-5">
-        <h1 className="text-center mb-4">Booking Calendar</h1>
         <Row>
             <Col md={6} className="mb-3">
                 <Form.Group>

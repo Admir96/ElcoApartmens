@@ -1,59 +1,45 @@
-import '../../index.css'
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
- function Slider() {
-
-      return (
-        <div className="p-5" style={{ backgroundColor: '#eee'}} id="venue">
-          <div className="container" style={{width:'70%'}}>
-            <div className="row animate-in-down p-4 rounded" style={{ backgroundColor: '#fff' }}>
-              <div className="p-5 col-md-6 align-center">
-                <h1 className=''>Feel comfortable, and purchase items</h1>
-           
-                <p className="my-4">
-                  It is a long established fact that a reader will be distracted by the readable content of a page
-                  when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
-                  distribution of letters, as opposed to using 'Content here</p>
-              </div>
-              <div className="p-0 col-md-6" style={{ backgroundColor: '#fff' }}>
-                <div id="carousel1" className="carousel slide">
-                  <div className="carousel-inner">
-                    <div className="carousel-item">
-                      <img className="d-block img-fluid w-100 h-auto rounded" src="https://i.imgur.com/K7A78We.jpg" alt="first slide" />
-                      <div className="carousel-caption">
-                       
-                        <h3>Simura Hotels</h3>
-                        <p>Good architecture, services</p>
-                      </div>
-                    </div>
-                    <div className="carousel-item active">
-                      <img className="d-block img-fluid w-100 h-auto rounded" src="https://i.imgur.com/K7A78We.jpg" />
-                      <div className="carousel-caption">
-                        <h3>Hauzkhas Village Bar</h3>
-                        <p>Enjoy our long drink</p>
-                      </div>
-                    </div>
-                    <div className="carousel-item">
-                      <img className="d-block img-fluid w-100 h-auto rounded" src="https://i.imgur.com/K7A78We.jpg" />
-                      <div className="carousel-caption">
-                        <h3>Cooking Hemorto</h3>
-                        <p>Tastes it better</p>
-                      </div>
-                    </div>
-                  </div>
-                  <a className="carousel-control-prev" href="#carousel1" role="button" data-bs-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                   
-                  </a>
-                  <a className="carousel-control-next" href="#carousel1" role="button" data-bs-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                  </a>
-                </div>
-              </div>
+const Slider: React.FC = () => {
+  return (
+    <div className="hero-slider shadow-sm">
+      <div id="carouselExample" className="carousel slide" data-bs-ride="carousel">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img src="https://i.imgur.com/K7A78We.jpg" className="d-block w-100" alt="First slide"/>
+            <div className="carousel-caption d-none d-md-block">
+              <h1>Welcome to Our Venue</h1>
+              <h3>Experience comfort and elegance like never before.</h3>
+            </div>
+          </div>
+          <div className="carousel-item">
+            <img src="https://i.imgur.com/K7A78We.jpg" className="d-block w-100" alt="Second slide" />
+            <div className="carousel-caption d-none d-md-block">
+              <h1>Discover the Best</h1>
+              <p>Join us for unforgettable moments.</p>
+            </div>
+          </div>
+          <div className="carousel-item">
+            <img src="https://i.imgur.com/K7A78We.jpg" className="d-block w-100" alt="Third slide" />
+            <div className="carousel-caption d-none d-md-block">
+              <h1>Indulge Yourself</h1>
+              <p>Savor the flavors of our exquisite menu.</p>
             </div>
           </div>
         </div>
+        <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Previous</span>
+        </button>
+        <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
   );
-}
-export default Slider
+};
+
+export default Slider;
