@@ -1,10 +1,10 @@
-import Slider from '../Components/slider/slider';
+import Nav from '../Components/nav/nav';
 
 
 function  home()  {
 
     return( 
-    <Slider></Slider>
+    <Nav></Nav>
     );
       
 };

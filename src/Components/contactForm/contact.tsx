@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ContactForm() {
     return (
-        <section className="page-section" id="contact" style={{ backgroundColor: '#f8f9fa' }}>
+        <section className="page-section mt-5" id="contact" style={{ backgroundColor: '#f8f9fa', paddingTop:'100px'}}>
             <div className="container px-4 px-lg-5">
                 <div className="row gx-4 gx-lg-5 justify-content-center">
                     <div className="col-lg-8 col-xl-6 text-center">
@@ -55,7 +55,7 @@ function ContactForm() {
                                 <div className="text-center text-danger mb-3">Error sending message!</div>
                             </div>
 
-                            <button className="btn btn-primary btn-xl w-100" style={{ backgroundColor: '#FF385C', borderRadius: '15px', borderColor:'#FF385C' }} type="submit">
+                            <button id='btn'className="btn btn-primary btn-xl w-100" type="submit">
                                 Submit
                             </button>
                         </form>
@@ -63,8 +63,6 @@ function ContactForm() {
                 </div>
                 <div className="row gx-4 gx-lg-5 justify-content-center">
                     <div className="col-lg-4 text-center mb-5 mb-lg-0">
-                        <i className="bi-phone fs-2 mb-3 text-muted"></i>
-
                     </div>
                 </div>
             </div>

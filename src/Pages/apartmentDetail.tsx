@@ -1,45 +1,39 @@
 import React from "react";
-import Calender from "../Components/calendar/calender";
+import Calendar from "../Components/calendar/calender";
+import ImageGallery from '../Components/cardGallery/slickGallery'
 
 const ApartmentDetail: React.FC = () => {
     return (
-        <div className="container mt-5">
-            <div className="mt-4">
-                <div className="row">
-                    <div className="col-md-6 mb-3">
-                        <img src="https://via.placeholder.com/600x300?text=Large+Image" className="img-fluid rounded shadow" alt="Large" />
-                    </div>
-                    <div className="col-md-3 d-flex flex-column">
-                        <img src="https://via.placeholder.com/300x150?text=Small+Image+1" className="img-fluid mb-2 rounded shadow" alt="Small 1" />
-                        <img src="https://via.placeholder.com/300x150?text=Small+Image+2" className="img-fluid rounded shadow" alt="Small 2" />
-                    </div>
-                    <div className="col-md-3 d-flex flex-column">
-                        <img src="https://via.placeholder.com/300x150?text=Small+Image+1" className="img-fluid mb-2 rounded shadow" alt="Small 3" />
-                        <img src="https://via.placeholder.com/300x150?text=Small+Image+2" className="img-fluid rounded shadow" alt="Small 4" />
-                    </div>
-                </div>
-            </div>
-
+        <div id="apartmentDetail" className="container mt-5">
+            <ImageGallery/>
+        
             <div className="row mt-4">
                 <div className="col-md-8">
-                    <h4>Description</h4>
-                    <p style={{color:'#333'}}>This beautiful apartment is located in the heart of the city. It features modern amenities, a spacious living area, and is perfect for travelers looking for a comfortable stay.</p>
-
-                    <h4>Amenities</h4>
-                    <ul>
-                        <li  style={{color:'#333'}}>WiFi</li>
-                        <li style={{color:'#333'}}>Air Conditioning</li>
-                        <li style={{color:'#333'}}>Kitchen</li>
-                        <li style={{color:'#333'}}>Free Parking</li>
-                        <li style={{color:'#333'}}>Pool</li>
+                    <div className="container mt-5" style={{position:'absolute', left:'15.5%'}}>
+                    <h4 className="font-weight-bold">Apartment Description</h4>
+                    <p  id="desc" className="text-muted w-100">
+                    Discover the perfect harmony of elegance and comfort in this exquisite apartment situated in the heart of the city. Featuring modern amenities, a spacious layout, and chic decor, it’s ideal for both short getaways and extended stays."
+                    </p>
+                    </div>
+                    <div className="col-md-8 mt-4"  style={{position:'absolute', top:'62.2%'}}>
+                    <h4 className="font-weight-bold">Amenities</h4>
+                    <ul className="list-unstyled row"style={{lineHeight:'27px'}}>
+                        <li  id="desc"><i className="bi-check h5 me-3"></i>WiFi</li>
+                        <li  id="desc"><i className="bi-check h5 me-3"></i>Air Conditioning</li>
+                        <li  id="desc"><i className="bi-check h5 me-3"></i>Kitchen</li>
+                        <li  id="desc"><i className="bi-check h5 me-3"></i>Free Parking</li>
+                        <li  id="desc"><i className="bi-check h5 me-3"></i>Pool</li>
+                        <li  id="desc"><i className="bi-check h5 me-3"></i>4 Bads</li>
+                        <li  id="desc"><i className="bi-check h5 me-3"></i>Lovely view</li>
                     </ul>
                 </div>
+                </div>
 
-                <div className="col-md-4">
+                <div className="col-md-4" style={{width:'25%',position:'absolute', top:'65%', left:'59.6%'}}>
                     <div className="card mb-3 shadow-sm">
-                        <div className="card-body text-center">
-                            <h5 className="card-title">$120 per night</h5>
-                            <Calender />
+                        <div className="card-body text-center ">
+                            <h5 className="card-title font-weight-bold">$120 per night</h5>
+                            <Calendar />
                         </div>
                     </div>
                 </div>

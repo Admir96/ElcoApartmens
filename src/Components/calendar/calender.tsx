@@ -66,7 +66,7 @@ const Calendar: React.FC = () => {
                 </Form.Group>
             </Col>
         </Row>
-            <Button variant="secondary" onClick={() => {
+            <Button id="Button" variant="secondary" onClick={() => {
 
     AddIntervals(checkInDate,checkOutDate);
     console.log("Requesting dates:", { checkInDate, checkOutDate });
