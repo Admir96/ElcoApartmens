@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import DatePicker from "react-datepicker"; // Make sure to import DatePicker
 import "react-datepicker/dist/react-datepicker.css"; // Import the CSS
+import BookNowContact from "./bookNowContact";
 
 const Calendar: React.FC = () => {
     const [checkInDate, setCheckInDate] = useState<Date | undefined>(undefined);
@@ -19,6 +20,20 @@ const Calendar: React.FC = () => {
           return bookedIntervals.push(({ start, end }));
         
          
+    }
+const openContactForm = () => {
+
+    AddIntervals(checkInDate,checkOutDate);
+    console.log("Requesting dates:", { checkInDate, checkOutDate });
+
+     window.open(
+        '/bookNowContact?${ checkInDate, checkOutDate }',
+        '_blank',
+        'width=850,height=720,top=100,left=600'
+      );
+
+      
+    
     }
 
     const isBooked = (date: Date) => {
@@ -66,11 +81,7 @@ const Calendar: React.FC = () => {
                 </Form.Group>
             </Col>
         </Row>
-            <Button id="Button" variant="secondary" onClick={() => {
-
-    AddIntervals(checkInDate,checkOutDate);
-    console.log("Requesting dates:", { checkInDate, checkOutDate });
-}}     disabled={!checkInDate && !checkOutDate}>
+            <Button id="Button" variant="secondary" disabled={!checkInDate && !checkOutDate} onClick = {openContactForm}>
                 Book Now
             </Button>
         </Container>

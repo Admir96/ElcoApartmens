@@ -2,11 +2,11 @@
 function footer() {
 
           return (
-            <div className="container-fluid bg-dark text-white-50 footer pt-5 mt-5">
+            <div className="container-fluid text-white-50 footer mt-2" style={{backgroundColor:'#23272b'}}>
             <div className="container py-6">
                 <div className="row g-5">
-                    <div className="col">
-                        <h4>Get In Touch</h4>
+                    <div className="col pb-2">
+                        <h3 className="carousel-h4">Get In Touch</h3>
                         <p id='btnLink'  className="mb-2"><i className="bi-geo me-3"></i>123 Street, New York, USA</p>
                         <p id='btnLink'  className="mb-2"><i className="bi-phone me-3"></i>+012 345 67890</p>
                         <p id='btnLink'  className="mb-2"><i className="bi-envelope me-3"></i>info@example.com</p>
@@ -18,7 +18,7 @@ function footer() {
                         </div>
                     </div>
                     <div className="col-6">
-                        <h4 >Quick Links</h4>
+                        <h3 className="carousel-h4">Quick Links</h3>
                         <a id='btnLink' className="btn btn-link text-white-50" href="">Home</a>
                         <a id='btnLink' className="btn btn-link text-white-50" href="">Apartmens</a>
                         <a id='btnLink' className="btn btn-link text-white-50" href="">Contact</a>

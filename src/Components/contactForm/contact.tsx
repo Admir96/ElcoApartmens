@@ -1,73 +1,76 @@
-import '../../Pages/pages.css';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'; // Using Leaflet for the map
+import 'leaflet/dist/leaflet.css';
+import { LatLngExpression } from 'leaflet';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
-function ContactForm() {
+interface FormValues {
+    name:string,
+    email:string,
+    message:string
+}
+const MapWithForm: React.FC = () => {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm<FormValues>();
+    const position: LatLngExpression = [51.505, -0.09]; // Set initial map position
+
+
+    const OnSubmit: SubmitHandler<FormValues> = (data) => {
+        console.log('Form submitted successfully:', data);
+      };
     return (
-        <section className="page-section mt-5" id="contact" style={{ backgroundColor: '#f8f9fa', paddingTop:'100px'}}>
-            <div className="container px-4 px-lg-5">
-                <div className="row gx-4 gx-lg-5 justify-content-center">
-                    <div className="col-lg-8 col-xl-6 text-center">
-                        <h2 className="mt-0" style={{ fontWeight: 'bold' }}>Let's Get In Touch!</h2>
-                        <hr className="divider" />
-                        <p className="text-muted mb-5">
-                            Ready to start your next project with us? Send us a message, and we will get back to you as soon as possible!
-                        </p>
-                    </div>
+        <div className="container-fluid mt-5">
+            <div className="row">
+   
+                <div className="col-md-6">
+                    <MapContainer center={position} zoom={13} scrollWheelZoom={false} >
+                        <TileLayer 
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                        />
+                        <Marker position={position}>
+                            <Popup>
+    <h6>Contact Us</h6>
+    <p>Email: info@example.com</p>
+    <p>Phone: (123) 456-7890</p>
+                            </Popup>
+                        </Marker>
+                    </MapContainer>
                 </div>
-                <div className="row gx-4 gx-lg-5 justify-content-center mb-5">
-                    <div className="col-lg-6">
-                        <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <div className="form-floating mb-3">
-                                <input className="form-control" id="name" type="text" placeholder="Enter your name..." data-sb-validations="required" />
-                                <label htmlFor="name">Full name</label>
-                                <div className="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
-                            </div>
 
-                            <div className="form-floating mb-3">
-                                <input className="form-control" id="email" type="email" placeholder="name@example.com" data-sb-validations="required,email" />
-                                <label htmlFor="email">Email address</label>
-                                <div className="invalid-feedback" data-sb-feedback="email:required">An email is required.</div>
-                                <div className="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+         
+                <div className="col-md-6 border-top"
+                  >
+                    <div className="p-4"style={{marginRight:'20px'}}>
+                    <h2 style={{textAlign:'center'}} >Contact Us</h2>
+                    <p className="mb-5"style={{textAlign:'center', paddingBottom:'5px',paddingRight:'3px'}}>We’d love to hear from you! Whether you have a question, feedback, or just want to say hello, feel free to reach out. Our team is here to assist you and ensure you have the best experience possible.</p>                
+                        <form onSubmit={handleSubmit(OnSubmit)}>
+                            <div className="mb-5">
+                                <label htmlFor="name" className="form-label">Name</label>
+                                <input {...register('name', {required:'name is required !'})} type="text" className="form-control" id="name" placeholder="Enter your name"/>
+                                {errors.name && <p className="error-message">{errors.name.message}</p>}
                             </div>
-
-                            <div className="form-floating mb-3">
-                                <input className="form-control" id="phone" type="tel" placeholder="(123) 456-7890" data-sb-validations="required" />
-                                <label htmlFor="phone">Phone number</label>
-                                <div className="invalid-feedback" data-sb-feedback="phone:required">A phone number is required.</div>
+                            <div className="mb-5">
+                                <label htmlFor="email" className="form-label">Email</label>
+                                <input {...register('email',{ required:'email is required !', pattern:{value: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/, message:'invalid email !'}})} type="email" className="form-control" id="email" placeholder="Enter your email"/>
+                                {errors.email && <p className="error-message">{errors.email.message}</p>}
                             </div>
-
-                            <div className="form-floating mb-3">
-                                <textarea className="form-control" id="message" placeholder="Enter your message here..." style={{ height: '10rem' }} data-sb-validations="required"></textarea>
-                                <label htmlFor="message">Message</label>
-                                <div className="invalid-feedback" data-sb-feedback="message:required">A message is required.</div>
+                            <div className="mb-5">
+                                <label htmlFor="message" className="form-label " >Message</label>
+                                <textarea {...register('message',{required:'message is required !'})} className="form-control " id="message" rows={10} placeholder="Your message" required></textarea>
+                                {errors.message && <p className="error-message">{errors.message.message}</p>}
                             </div>
-
-                            <div className="d-none" id="submitSuccessMessage">
-                                <div className="text-center mb-3">
-                                    <div className="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-
-                            <div className="d-none" id="submitErrorMessage">
-                                <div className="text-center text-danger mb-3">Error sending message!</div>
-                            </div>
-
-                            <button id='btn'className="btn btn-primary btn-xl w-100" type="submit">
-                                Submit
-                            </button>
+                            <button id='btn' type="submit" className="btn btn-primary py-3, px-5 w-100">Submit</button>
                         </form>
                     </div>
                 </div>
-                <div className="row gx-4 gx-lg-5 justify-content-center">
-                    <div className="col-lg-4 text-center mb-5 mb-lg-0">
-                    </div>
-                </div>
             </div>
-        </section>
+        </div>
     );
-}
+};
 
-export default ContactForm;
+export default MapWithForm;

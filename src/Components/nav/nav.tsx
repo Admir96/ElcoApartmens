@@ -11,7 +11,7 @@ const  nav = () =>  {
 
     return(
         <>
-    <nav className="navbar navbar-expand-lg navbar-light fixed-top py-0" id="mainNav">
+    <nav className="navbar navbar-expand-lg navbar-light fixed-top py-0 mt-3" id="mainNav">
         <div className="container px-4 px-lg-5">
 
         <div className="navbar-brand" style={{position:'absolute', left:'4%', paddingTop:'70px'}}>
@@ -41,13 +41,14 @@ const  nav = () =>  {
       </nav>
       <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" className="scrollspy-example" tabIndex={0}>
     
-     <section id="Home"><Slider/></section>
+     <section  className=' pb-4 mb-4'id="Home"><Slider/></section>
 
-        <section id="Apartments"><Apartments/></section>
+        <section className='p-4 mb-4' style={{marginTop:'50px'}}id="Apartments"><Apartments/></section>
 
-        <section id="Contact"><Contact/></section>      
+        
+        <section className='p-4 mb-4' style={{marginTop:'150px'}} id="Contact"><Contact/></section>      
        
-        <section id='Footer' style={{paddingTop:'45px',backgroundColor:'#f8f9fa'}}>
+        <section className='mt-4'id='Footer' style={{paddingTop:'45px',backgroundColor:'#e2e6ea'}}>
       <Footer/>
      </section>
       </div>   

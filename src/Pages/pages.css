@@ -1,61 +1,68 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
-@import url('@fontsource/great-vibes'); 
-@import url('@fontsource/allura'); 
-@import url('@fontsource/pacifico'); 
-@import url( '@fontsource/dancing-script');
-@import url('@fontsource/sacramento'); 
-@import url('@fontsource/satisfy'); 
-@import url('@fontsource/cedarville-cursive'); 
-@import url('@fontsource/handlee'); 
+
 
 html, body {
 
   margin: 0 !important;                
   padding: 0 !important;               
   box-sizing: border-box !important;  
+
 }
 body {
-  font-size: 20px !important;                  
+  font-size: 18px !important;                  
   line-height: 25px !important;                                    
-  background-color: #f8f9fa !important; 
-  font-family: 'Dancing Script', cursive !important; 
-  font-stretch: normal;
-
+  background-color: #e2e6ea !important; 
+  font-family: "Uniform Pro" !important; 
+  font-stretch:ultra-expanded !important; 
+color: #263a4e !important; 
+overflow-x: hidden;
 }
-.carousel-inner {
-  width: 100vw;
-  height: 100vh;
+#AH{
+  font-family: "Nexa Slab" !important; 
+  font-weight: 400 !important; 
+  font-size: 55px !important; 
+  text-align: center !important;
+  
 }
-
-.carousel-inner .carousel-item {
-  width: 100%;
-  height: 100%;
-}
-
-.carousel-inner .carousel-item img {
-  width: 100%;
-  height: 100%;
+img{
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
   object-fit: cover;
-}
-
-.carousel-control-prev-icon  {
-  padding: 30px;
-  border-radius: 100px;
-}
-.carousel-control-next-icon {
-  padding: 30px;
-  border-radius: 100px;
-}
-
-.carousel-control-prev {
-left: 2em;
 
 }
 
-.carousel-control-next {
-right: 2em;
+.nav-link{
+  font-size: 22px;
+}
+.hero-slider {
+  position: relative;
+  height: 100vh; /* Full viewport height */
+}
+.text-muted{
+  
+  color:rgb(0, 30, 80) !important; 
+}
+.carousel-item {
+  height: 100vh; /* Full height for each slide */
+}
+
+.carousel-item img {
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  object-fit: cover; /* Cover the area without distortion */
+}
+
+.carousel-caption {
+  position: absolute;
+  top: 55%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+  color: rgb(0, 30, 80);
+  text-align: left;
 
 }
+
+
 .navbar-brand img{
   background: none;
   position: relative;
@@ -102,40 +109,50 @@ right: 2em;
 
 
 li a{
-  font-family: 'Handlee', cursive !important;
-  color:#4682B4 !important;
+  font-family: "Nexa Slab" !important;
+  color: rgb(0, 30, 80) !important;
   font-weight: 700 !important;
-  font-style: normal;
+
+  transition: background-color 0.3s ease  !important;
 }
 li a:hover{
-  color: #FF7F50 !important;
-
+  color: rgb(0, 40, 100)!important;
 }
+
 h1,h2,h3,h4,h5{
-  color: #4682B4 !important;
-  font-family: 'Handlee', cursive;
-  font-size: 36px;
+  color: rgb(0, 30, 80) !important;
+  font-family: "Nexa Slab" !important;
+  font-size: 38px;
   font-weight: 500;
   letter-spacing: 2px;
-  line-height: 1.5;
-  color: #4682B4; /* Adjusted color */
-
-
+  line-height: 1;
 }
-.carousel-inner h1, h3{
-  font-family: 'Great Vibes', cursive !important;
+.carousel-h1{
+  width: 100%;
+  font-family: "Nexa Slab" !important;
     font-weight: 500  !important;
-    font-size: 36px !important;
-    color: #E6E6FA  !important;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7)  !important; 
+    line-height: 80px !important;
+    font-size: 95px !important;
+    color: rgb(0, 30, 80)   !important;
   }
+  .carousel-h3{
+    font-family: "Nexa Slab" !important;
+      font-weight: 400  !important;
+      font-size: 46px !important;
+      color: rgb(0, 30, 80)   !important;
+    
+    }
+
 #btn {
-background-color: #4682B4 !important;
-border-color: #4682B4 !important;
-  border-radius: 5px !important; 
+background-color: rgb(0, 30, 80)  !important;
+border-color: rgb(0, 30, 80)  !important;
+color: white !important;
+border-radius: 5px !important; 
+transition: background-color 0.3s ease;
+
 }
 #btn:hover{
-  color: #FF7F50;
+  background: linear-gradient(135deg, rgb(0, 30, 80) , rgb(0, 40, 100));
 }
 
 .page-section {
@@ -147,12 +164,12 @@ h2 {
 }
 
 .form-floating label {
-  color: #6c757d; 
+  color: #263a4e !important; 
 }
 
 #Contact {
   animation-name: fadeInC;
-  animation-duration: 4s;
+  animation-duration: 3s;
 }
 #Apartments {
   animation-name: fadeIn;
@@ -181,21 +198,6 @@ h2 {
   }
 }
 
-  #Footer p{
-    animation-name: fadeOutLeft;
-    animation-duration: 5s;
-  }
-  @keyframes fadeOutLeft {
-    from {
-      opacity: 0;
-    }
-  
-    to {
-      opacity: 1;
-      transform: translate3d(100%, 0, 100%);
-    }
-  }
-
   .footer .btn.btn-social {
     margin-right: 5px;
     width: 35px;
@@ -204,14 +206,16 @@ h2 {
     align-items: center;
     justify-content: center;
     color: var(--light);
-    border: 1px solid rgba(255,255,255,0.5);
+    border: 1px solid #6b7579 ;
     border-radius: 35px;
     transition: .3s;
+    
 }
 
 .footer .btn.btn-social:hover {
     color: var(--primary);
-    border-color: var(--light);
+    border-color:  rgb(0, 30, 80);
+    background: linear-gradient(135deg,  rgb(0, 30, 80), rgb(0, 40, 100));
 }
 
 .footer .btn.btn-link  {
@@ -224,50 +228,55 @@ h2 {
     text-transform: capitalize;
     transition: .3s;
     text-decoration: none;
+ color: #6b7579 !important;
 
 }
 
 .footer .btn.btn-link::before {
     position: relative;
 
-    font-family: 'Jost'!important; 
+    font-family: "Uniform Pro" !important; 
     font-weight: 700;
     margin-right: 10px;
     text-decoration: none;
+  
 }
 
 .footer .btn.btn-link:hover {
     letter-spacing: 1px;
     box-shadow: none;
+    
 }
 
 
 .footer .copyright {
     padding: 5px 0;
     font-size: 15px;
-    border-top: 1px solid rgba(256, 256, 256, .1);
+    border-top: 1px solid #6b7579 ;
 } 
 
 .footer .copyright a {
-    color: var(--light);
+    color: #6b7579 !important;
  
 }
 
 .footer .footer-menu a {
     margin-right: 15px;
     padding-right: 15px;
-    border-right: 1px solid rgba(255, 255, 255, .1);
- 
+    border-right: 1px solid #6b7579;
+    color: #6b7579 !important;
 }
 
 .footer .footer-menu a:last-child {
     margin-right: 0;
     padding-right: 0;
     border-right: none;
+    color: #6b7579 !important;
 }
 i{
-  font-family: 'Jost'!important; 
+  font-family: "Uniform Pro" !important; 
   font-size: 15px;
+  color: #6b7579 !important;
 }
 #copy{
   padding: 0px;
@@ -275,45 +284,66 @@ i{
   width: auto;
 position: relative;
 left: 41%;
+color: #6b7579 !important;
 }
 #desc{
-  font-family: 'Handlee', cursive;
-  font-size: 16px;
-  color: #696969;
-  letter-spacing: 1px;
-  
+  font-family: "Uniform Pro" !important;
+  font-size: 18px;
+  color: #263a4e !important; 
+  line-height: 1 !important;
+  margin-top: 0px;
 }
 #desc i {
-  color: #4682B4;
+  color: #263a4e !important; 
 }
-
-#btnLink:hover{
-  color: #FF7F50 !important;
-  cursor: pointer;
-}
-
-
   .card {
-    border: none;
+    border: none !important;
+    background: none !important;; 
 }
-
+#descC{
+  margin-top: 5px;
+  padding: 15px;
+text-align: left;
+}
 
 
 .img-fluid {
-    transition: transform 0.2s; /* Smooth scaling effect */
     cursor: pointer;
 }
 
-.img-fluid:hover {
-    transform: scale(1.05); /* Scale on hover */
-}
-
 #Button{
-  background-color: #4682B4 !important;
-border-color: #4682B4 !important;
+  background-color:  rgb(0, 30, 80)!important;
+border-color:  rgb(0, 30, 80) !important;
   border-radius: 5px !important; 
   cursor: pointer !important;
+  transition: background-color 0.3s ease;
 }
-#Button:hover{
-  color: #FF7F50 !important;
+
+.leaflet-container {
+  height: 97%;
+  width: 100%;
+  border-radius: 10px;
+}
+
+#btnLink{
+  color: #6b7579 !important;
+}
+.carousel-h4{
+  color:  rgb(0, 20, 100) !important;
+  font-size: 23px !important;
+}
+
+.slick-slide:active{
+  border: none;
+  background: none;
+}
+.input-error {
+  border-color: red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875em; /* Smaller font for errors */
+  margin-top: -3px;
+  margin-bottom: 10px;
 }
