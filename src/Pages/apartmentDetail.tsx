@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "../Components/calendar/calender";
 import { faBed } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,23 +8,47 @@ import { faKitchenSet } from "@fortawesome/free-solid-svg-icons/faKitchenSet";
 import { faParking } from "@fortawesome/free-solid-svg-icons/faParking";
 import { faSwimmingPool } from "@fortawesome/free-solid-svg-icons/faSwimmingPool";
 import { faEye } from "@fortawesome/free-solid-svg-icons/faEye";
+import { useParams } from "react-router-dom";
+import fetchApartments, { Apartment } from "../Services/apartmentService";
+
+
 const ApartmentDetail: React.FC = () => {
+
+    const { id } = useParams<{ id: string }>(); // Get the apartment ID from URL params
+    
     const [isOpen, setIsOpen] = useState(false);
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [apartments, setApartments] = useState<Apartment[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const images = [
-        "src/assets/img/pexels-fotoaibe-1571468.png",
-        "src/assets/img/pexels-pixabay-271624.png",
-        "src/assets/img/pexels-heyho-6492398.png",
-        "src/assets/img/pexels-heyho-5998120.png",
-        "src/assets/img/pexels-s3t-koncepts-1636465088-28853343.png",
-        "src/assets/img/pexels-s3t-koncepts-1636465088-28853343.png",
-        "src/assets/img/pexels-s3t-koncepts-1636465088-28853343.png",
-        "src/assets/img/pexels-s3t-koncepts-1636465088-28853343.png",
-        "src/assets/img/pexels-s3t-koncepts-1636465088-28853343.png",
-        "src/assets/img/pexels-s3t-koncepts-1636465088-28853343.png",
-      
-    ];
+
+    useEffect(() => {
+        const loadApartments = async () => {
+            try {
+                const data = await fetchApartments();
+                setApartments(data);
+            } catch (err) {
+                // Ensure error is of type Error
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError('An unexpected error occurred');
+                }
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadApartments();
+    }, []);
+
+    const apartment = apartments.find((apt) => apt.id === parseInt(id!)); 
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+
     const openGallery = (index: number) => {
         setCurrentImageIndex(index);
         setIsOpen(true);
@@ -36,12 +60,14 @@ const ApartmentDetail: React.FC = () => {
 
     const nextImage = (e:React.MouseEvent) => {
         e.stopPropagation();
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+        if(apartment?.imageUrls)
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % apartment?.imageUrls.length);
     };
 
     const prevImage = (e:React.MouseEvent) => {
         e.stopPropagation();
-        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+        if(apartment?.imageUrls)
+        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + apartment.imageUrls.length) % apartment.imageUrls.length);
     };
 
 
@@ -51,7 +77,7 @@ const ApartmentDetail: React.FC = () => {
                 <div className="row mb-4">
                     <div className="col-md-5 mb-5 p-0" style={{ marginRight: '20px' }}>
                         <img
-                            src={images[0]}
+                            src={apartment?.imageUrls[0]}
                             className="img-fluid img-thumbnail rounded shadow"
                             style={{ objectFit: 'cover', height: '405px' }}
                             alt="Large"
@@ -59,7 +85,7 @@ const ApartmentDetail: React.FC = () => {
                         />
                     </div>
                     <div className="col-md-2 d-flex flex-column">
-                        {images.slice(1, 4).map((image, index) => (
+                        {apartment?.imageUrls.slice(1, 4).map((image, index) => (
                             <img
                                 key={index}
                                 src={image}
@@ -71,27 +97,27 @@ const ApartmentDetail: React.FC = () => {
                         ))}
                     </div>
                     <div className="col-md-2 d-flex flex-column">
-                        {images.slice(3, 6).map((image, index) => (
+                        {apartment?.imageUrls.slice(4, 7).map((image, index) => (
                             <img
-                                key={index + 3}
+                                key={index + 4}
                                 src={image}
                                 className="img-fluid img-thumbnail mb-2 rounded shadow"
                                 style={{ objectFit: 'cover', height: '130px' }}
-                                alt={`Small ${index + 3}`}
-                                onClick={() => openGallery(index + 3)}
+                                alt={`Small ${index + 4}`}
+                                onClick={() => openGallery(index + 4)}
                             />
                             
                         ))}
                     </div>
                     <div className="col-md-2 d-flex flex-column">
-                        {images.slice(5, 8).map((image, index) => (
+                        {apartment?.imageUrls.slice(7, 10).map((image, index) => (
                             <img
-                                key={index + 3}
+                                key={index + 7}
                                 src={image}
                                 className="img-fluid img-thumbnail mb-2 rounded shadow"
                                 style={{ objectFit: 'cover', height: '130px' }}
-                                alt={`Small ${index + 3}`}
-                                onClick={() => openGallery(index + 3)}
+                                alt={`Small ${index + 7}`}
+                                onClick={() => openGallery(index + 7)}
                             />
                             
                         ))}
@@ -104,7 +130,7 @@ const ApartmentDetail: React.FC = () => {
                 <div className="gallery-modal" onClick={closeGallery} style={modalStyles}>
                     <div style={{ position: 'relative', textAlign: 'center' }}>
                         <img
-                            src={images[currentImageIndex]}
+                            src={apartment?.imageUrls[currentImageIndex]}
                             alt={`Slide ${currentImageIndex + 1}`}
                             style={{
                                 width: '80%',
@@ -134,33 +160,11 @@ const ApartmentDetail: React.FC = () => {
                 </div>
             </div>
 
-   
-
-            <div className="col-md-3 rounded"style={{float:'right', backgroundColor:'#F0F8FF', position:'absolute', left:'54%'}}>
-                    <div className="card mb-3">
-                        <div className="card-body text-center">
-                            <h5 className="card-title font-weight-bold mb-4">$120 per night</h5>
-                            <p style={{fontSize:'16px', color: '#263a4e', textAlign:'center'}}>Please reach out to us via phone or select an available time period. Click on "Request Booking," and we will get back to you shortly.</p>
-                            <Calendar />
-                        </div>
-                    </div>
-                </div>
             <div className="mt-0" style={{width:'75%', marginLeft:'0px'}}>
                 <div className="col-md-8">
                     <h4 className="font-weight-bold mb-4">Apartment Description</h4>
-                    <p id="desc" className="text-muted w-100">
-                        Discover the perfect harmony of elegance and comfort in this exquisite apartment situated in the heart of the city. Featuring modern amenities, a spacious layout, and chic decor, it’s ideal for both short getaways and extended stays.
-                        This apartment boasts breathtaking views and is conveniently located near popular attractions, making it a perfect choice for travelers looking to explore the city.
-                        This apartment boasts breathtaking views and is conveniently located near popular attractions, making it a perfect choice for travelers looking to explore the city.
-                        
-              
-
-                    </p>
-          
-                        
-                    <p id="desc" className="text-muted w-100 mb-5">
-                        This apartment boasts breathtaking views and is conveniently located near popular attractions, making it a perfect choice for travelers looking to explore the city.
-                        This apartment boasts breathtaking views and is conveniently located near popular attractions,</p>
+                    <p id="descA" className="text-muted w-100">
+                       {apartment?.description2}</p>
                                 
 
                     <hr className="my-4" />
@@ -169,21 +173,21 @@ const ApartmentDetail: React.FC = () => {
                     <div className="col">
                     <h4 className="font-weight-bold mb-4">Amenities</h4>
                     <ul className="list-unstyled row" style={{ lineHeight: '25px' }}>
-                        <li id="desc" className="mb-2"><FontAwesomeIcon icon={faWifi}  className="me-3" />WiFi</li>
-                        <li id="desc" className="mb-2"><FontAwesomeIcon icon={faAirFreshener} className="me-3" />Air Conditioning</li>
-                        <li id="desc" className="mb-2"><FontAwesomeIcon icon={faKitchenSet} className="me-3" />Kitchen</li>
-                        <li id="desc" className="mb-2"><FontAwesomeIcon icon={faParking} className="me-3" />Free Parking</li>
-                        <li id="desc" className="mb-2"><FontAwesomeIcon icon={faSwimmingPool} className="me-3" />Pool</li>
-                        <li id="desc" className="mb-2"><FontAwesomeIcon icon={faBed} className="me-3" /> 4 Beds</li>
-                        <li id="desc" className="mb-2"><FontAwesomeIcon icon={faEye} className="me-3" />Lovely view</li>
+                        <li id="descA" className="mb-2"><FontAwesomeIcon icon={faWifi}  className="me-3" />{apartment?.amenities[0]}</li>
+                        <li id="descA" className="mb-2"><FontAwesomeIcon icon={faAirFreshener} className="me-3" />{apartment?.amenities[1]}</li>
+                        <li id="descA" className="mb-2"><FontAwesomeIcon icon={faKitchenSet} className="me-3" />{apartment?.amenities[2]}</li>
+                        <li id="descA" className="mb-2"><FontAwesomeIcon icon={faParking} className="me-3" />{apartment?.amenities[3]}</li>
+                        <li id="descA" className="mb-2"><FontAwesomeIcon icon={faSwimmingPool} className="me-3" />{apartment?.amenities[4]}</li>
+                        <li id="descA" className="mb-2"><FontAwesomeIcon icon={faBed} className="me-3" />{apartment?.amenities[5]}</li>
+                        <li id="descA" className="mb-2"><FontAwesomeIcon icon={faEye} className="me-3" />{apartment?.amenities[6]}</li>
                     </ul>
                     </div>
-                    <div className="col" style={{position:'absolute', top:'104%', left:'46%'}}>
+                    <div className="col" style={{position:'absolute', top:'101%', left:'46%'}}>
                     <h4 className="font-weight-bold mb-4">Google Reviews</h4>
                     <div className="text-muted">
-                        <p>"Amazing stay! The apartment was beautiful and well-equipped." - ⭐⭐⭐⭐⭐</p>
-                        <p>"Perfect location, close to everything we wanted to see." - ⭐⭐⭐⭐⭐</p>
-                        <p>"Very clean and comfortable. Highly recommend!" - ⭐⭐⭐⭐⭐</p>
+                        <p className="descA">"Amazing stay! The apartment was beautiful and well-equipped." - ⭐⭐⭐⭐⭐</p>
+                        <p className="descA">"Perfect location, close to everything we wanted to see." - ⭐⭐⭐⭐⭐</p>
+                        <p className="descA">"Very clean and comfortable. Highly recommend!" - ⭐⭐⭐⭐⭐</p>
                     </div>
                     </div>
               </div>

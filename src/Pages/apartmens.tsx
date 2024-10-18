@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Gallery from "../Components/cardGallery/cardGallery";
 import { faBed } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,25 +8,44 @@ import { faKitchenSet } from "@fortawesome/free-solid-svg-icons/faKitchenSet";
 import { faParking } from "@fortawesome/free-solid-svg-icons/faParking";
 import { faSwimmingPool } from "@fortawesome/free-solid-svg-icons/faSwimmingPool";
 import { faEye } from "@fortawesome/free-solid-svg-icons/faEye";
-
+import { useNavigate } from "react-router-dom"
+import  { Apartment } from "../Services/apartmentService";
+import fetchApartments from "../Services/apartmentService";
 
 const Apartments: React.FC = () => {
-    const imagesForGallery1: string[] = [
-        "src/assets/img/pexels-jonathanborba-5570224.png",
-        "src/assets/img/pexels-s3t-koncepts-1636465088-28853343.png",
-        "src/assets/img/pexels-heyho-7535037.png",
-        "src/assets/img/pexels-ekrulila-19050708.png"
-    ];
 
-    const imagesForGallery2: string[] = [
-        "src/assets/img/pexels-heyho-5998120.png",
-        "src/assets/img/pexels-heyho-6492398.png",
-        "src/assets/img/pexels-heyho-6283972.png",
-       "src/assets/img/link-hoang-UoqAR2pOxMo-unsplash.png"
-    ];
+    const navigate = useNavigate();
+   
+    const [apartments, setApartments] = useState<Apartment[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleOpen = () => {
-        window.open('/ApartmentDetail', '_blank');
+
+    useEffect(() => {
+        const loadApartments = async () => {
+            try {
+                const data = await fetchApartments();
+                setApartments(data);
+            } catch (err) {
+                // Ensure error is of type Error
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError('An unexpected error occurred');
+                }
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadApartments();
+    }, []);
+
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+
+    const handleOpen = (id:number) => {
+        navigate(`/ApartmentDetail/${id}`); 
       };
 
     return (
@@ -39,21 +58,21 @@ const Apartments: React.FC = () => {
                 <div className="row align-items-top">
                     <div className="col-lg-6  ">
                         <div className="about-img position-relative p-4 pe-0">
-                        <Gallery images={imagesForGallery1} id="imageGallery1" />
+                        <Gallery images={apartments[0].imageUrls} id="imageGallery1" />
                         </div>
                     </div>
                     <div id="descC" className="col-lg-6">
-                        <h2 className="mb-4">Discover Your Apartment</h2>
-                        <p id="desc" className="mb-4">Explore a serene retreat designed for relaxation. Enjoy spacious living with modern touches and amenities that make your stay unforgettable.</p>
-                        <p id="desc"><FontAwesomeIcon icon={faWifi} size="xs" className="me-2" />WiFi</p>
-                        <p id="desc"><FontAwesomeIcon icon={faAirFreshener} size="xs" className="me-2" />Air Conditioning</p>
-                        <p id="desc"><FontAwesomeIcon icon={faKitchenSet} size="xs" className="me-2" />Kitchen</p>
-                        <p id="desc"><FontAwesomeIcon icon={faParking} size="xs" className="me-2" />Free Parking</p>                     
-                        <p id="desc"><FontAwesomeIcon icon={faSwimmingPool}  size="xs" className="me-2" />Pool</p>
-                        <p id="desc"><FontAwesomeIcon icon={faBed} size="xs" className="me-2" />4 Beds</p>
-                        <p id="desc"><FontAwesomeIcon icon={faEye} size="xs" className="me-2" />Lovely view</p>
+                        <h2 className="mb-4">{apartments[0].header}</h2>
+                        <p id="desc" className="mb-4">{apartments[0].description}</p>
+                        <p id="desc"><FontAwesomeIcon icon={faWifi} size="xs" className="me-2" />{apartments[0].amenities[0]}</p>
+                        <p id="desc"><FontAwesomeIcon icon={faAirFreshener} size="xs" className="me-2" />{apartments[0].amenities[1]}</p>
+                    <p id="desc"><FontAwesomeIcon icon={faKitchenSet} size="xs" className="me-2" />{apartments[0].amenities[2]}</p>
+                        <p id="desc"><FontAwesomeIcon icon={faParking} size="xs" className="me-2" />{apartments[0].amenities[3]}</p>                     
+                        <p id="desc"><FontAwesomeIcon icon={faSwimmingPool}  size="xs" className="me-2" />{apartments[0].amenities[4]}</p>
+                        <p id="desc"><FontAwesomeIcon icon={faBed} size="xs" className="me-2" />{apartments[0].amenities[5]}</p>
+                        <p id="desc"><FontAwesomeIcon icon={faEye} size="xs" className="me-2" />{apartments[0].amenities[6]}</p>
                       
-                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'166%', left:'38.7%'}} onClick={handleOpen}>Details</a>
+                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'166%', left:'38.7%'}} onClick= {() => handleOpen(apartments[0].id)}>Details</a>
                     </div>
                 </div>
             </div>
@@ -64,21 +83,21 @@ const Apartments: React.FC = () => {
                 <div className="row align-items-top">
                     <div className="col-lg-6">
                         <div className="about-img position-relative p-4 pe-0">
-                        <Gallery images={imagesForGallery2}   id="imageGallery2" />
+                        <Gallery images={apartments[1].imageUrls} id="imageGallery2" />
                         </div>
                     </div>
                     <div id="descC" className="col-lg-6">
-                        <h2 className="mb-4">Discover Your Apartment</h2>
-                        <p id="desc" className="mb-4">Explore a serene retreat designed for relaxation. Enjoy spacious living with modern touches and amenities that make your stay unforgettable.</p>
-                        <p id="desc"><FontAwesomeIcon icon={faWifi} size="xs" className="me-2" />WiFi</p>
-                        <p id="desc"><FontAwesomeIcon icon={faAirFreshener} size="xs" className="me-2" />Air Conditioning</p>
-                        <p id="desc"><FontAwesomeIcon icon={faKitchenSet} size="xs" className="me-2" />Kitchen</p>
-                        <p id="desc"><FontAwesomeIcon icon={faParking} size="xs" className="me-2" />Free Parking</p>                     
-                        <p id="desc"><FontAwesomeIcon icon={faSwimmingPool}  size="xs" className="me-2" />Pool</p>
-                        <p id="desc"><FontAwesomeIcon icon={faBed} size="xs" className="me-2" />4 Beds</p>
-                        <p id="desc"><FontAwesomeIcon icon={faEye} size="xs" className="me-2" />Lovely view</p>
+                        <h2 className="mb-4">{apartments[1].header}</h2>
+                        <p id="desc" className="mb-4">{apartments[1].description}</p>
+                        <p id="desc"><FontAwesomeIcon icon={faWifi} size="xs" className="me-2" />{apartments[1].amenities[0]}</p>
+                        <p id="desc"><FontAwesomeIcon icon={faAirFreshener} size="xs" className="me-2" />{apartments[1].amenities[1]}</p>
+                    <p id="desc"><FontAwesomeIcon icon={faKitchenSet} size="xs" className="me-2" />{apartments[1].amenities[2]}</p>
+                        <p id="desc"><FontAwesomeIcon icon={faParking} size="xs" className="me-2" />{apartments[1].amenities[3]}</p>                     
+                        <p id="desc"><FontAwesomeIcon icon={faSwimmingPool}  size="xs" className="me-2" />{apartments[1].amenities[4]}</p>
+                        <p id="desc"><FontAwesomeIcon icon={faBed} size="xs" className="me-2" />{apartments[1].amenities[5]}</p>
+                        <p id="desc"><FontAwesomeIcon icon={faEye} size="xs" className="me-2" />{apartments[1].amenities[6]}</p>
                       
-                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'166%', right:'5.5%'}} onClick={handleOpen}>Details</a>
+                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'166%', right:'5.5%'}} onClick= {() => handleOpen(apartments[1].id)}>Details</a>
                     </div>
                 </div>
             </div>

@@ -9,6 +9,13 @@ import Slider from '../slider/slider';
 
 const  nav = () =>  {
 
+  const scrollToSection = (sectionId:any) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+    }
+};
+
     return(
         <>
     <nav className="navbar navbar-expand-lg navbar-light fixed-top py-0 mt-3" id="mainNav">
@@ -27,30 +34,31 @@ const  nav = () =>  {
             <div className="collapse navbar-collapse" id="navbarResponsive">
                 <ul className="navbar-nav ms-auto my-2 my-lg-0 align-righ" style={{position:'absolute', right:'5.5%', paddingTop:'70px'}}>
           <li className="nav-item">
-            <a className="nav-link" href="#Home">Home</a>
+            <a className="nav-link" onClick={() => scrollToSection('Home')}>Home</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#Apartments">Apartments</a>
+            <a className="nav-link" onClick={() => scrollToSection('Apartments')}>Apartments</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#Contact">Contact</a>
+            <a className="nav-link" onClick={() => scrollToSection('Contact')}>Contact</a>
           </li>
             </ul>
             </div>
             </div>
       </nav>
-      <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" className="scrollspy-example" tabIndex={0}>
-    
-     <section  className=' pb-4 mb-4'id="Home"><Slider/></section>
-
-        <section className='p-4 mb-4' style={{marginTop:'50px'}}id="Apartments"><Apartments/></section>
-
-        
-        <section className='p-4 mb-4' style={{marginTop:'150px'}} id="Contact"><Contact/></section>      
-       
-        <section className='mt-4'id='Footer' style={{paddingTop:'45px',backgroundColor:'#e2e6ea'}}>
-      <Footer/>
-     </section>
+      <div className="scrollspy-example" tabIndex={0}>
+                <section className='pb-4 mb-4' id="Home">
+                    <Slider />
+                </section>
+                <section className='p-4 mb-4' style={{ marginTop: '50px' }} id="Apartments">
+                    <Apartments />
+                </section>
+                <section className='p-4 mb-4' style={{ marginTop: '150px' }} id="Contact">
+                    <Contact />
+                </section>
+                <section className='mt-4' id='Footer' style={{ paddingTop: '45px', backgroundColor: '#e2e6ea' }}>
+                    <Footer />
+                </section>       
       </div>   
       </>
     );

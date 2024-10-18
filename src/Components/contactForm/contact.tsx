@@ -4,6 +4,8 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'; // Using
 import 'leaflet/dist/leaflet.css';
 import { LatLngExpression } from 'leaflet';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface FormValues {
     name:string,
@@ -16,11 +18,13 @@ const MapWithForm: React.FC = () => {
         handleSubmit,
         formState: { errors },
       } = useForm<FormValues>();
+
     const position: LatLngExpression = [51.505, -0.09]; // Set initial map position
 
 
     const OnSubmit: SubmitHandler<FormValues> = (data) => {
-        console.log('Form submitted successfully:', data);
+        toast.success('Form submitted successfully!');
+        console.log(data);
       };
     return (
         <div className="container-fluid mt-5">
@@ -66,6 +70,8 @@ const MapWithForm: React.FC = () => {
                             </div>
                             <button id='btn' type="submit" className="btn btn-primary py-3, px-5 w-100">Submit</button>
                         </form>
+                        
+        <ToastContainer/>
                     </div>
                 </div>
             </div>
