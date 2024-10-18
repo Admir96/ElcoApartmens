@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import DatePicker from "react-datepicker"; // Make sure to import DatePicker
 import "react-datepicker/dist/react-datepicker.css"; // Import the CSS
-import BookNowContact from "./bookNowContact";
 
 const Calendar: React.FC = () => {
     const [checkInDate, setCheckInDate] = useState<Date | undefined>(undefined);
