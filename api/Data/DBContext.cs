@@ -16,6 +16,8 @@ public class DBContext : DbContext{
         public DbSet<Apartment> Apartments { get; set; }
          public DbSet<BookingRequests> BookingRequest {get; set;}
 
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Apartment>().HasData(

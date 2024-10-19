@@ -28,6 +28,7 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "cors": "^2.8.5",
     "glob": "^11.0.0",
     "leaflet": "^1.9.4",
     "mdb-react-ui-kit": "^8.0.0",

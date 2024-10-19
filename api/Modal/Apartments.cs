@@ -17,6 +17,6 @@ namespace api.Modal
 
     public List<BookingRequests> BookingRequest { get; set; } = new List<BookingRequests>();
 
-      public required string[] ImageUrls { get; set; } = new string[0];
+      public required string[] ImageUrls { get; set; }
 }
 }

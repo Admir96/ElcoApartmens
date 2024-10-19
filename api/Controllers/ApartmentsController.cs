@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using api.Modal;
 using Microsoft.EntityFrameworkCore;
 using api.Data;
 
 
-[Route("api/[controller]")]
-[ApiController]
+ [ApiController]
+[Route("api/apartments")]
 public class ApartmentsController : ControllerBase
 {
 
@@ -17,14 +16,15 @@ public class ApartmentsController : ControllerBase
             _context = context;
         }
 
-
     
         // GET: api/apartments
         [HttpGet]
-        public async Task<IActionResult> GetApartments()
+        public async  Task<ActionResult>  GetApartments()
         {
-            var apartments = await _context.Apartments.ToListAsync();
+            var apartments = await _context.Apartments
+        .ToListAsync();
             return Ok(apartments);
+        
         }
 
         // GET: api/apartments/{id}

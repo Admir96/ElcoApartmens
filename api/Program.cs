@@ -1,41 +1,60 @@
 using api.Data;
+using api.Modal;
 using Microsoft.EntityFrameworkCore;
+
 
 
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllers();
+
 
 builder.Services.AddDbContext<DBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAllOrigins",
-            builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+    options.AddPolicy("MyPolicy", builder =>
+    {
+        builder.WithOrigins("*") // Replace with your frontend URL
+               .WithMethods("GET", "POST", "PUT", "DELETE") // Allowed methods
+               .WithHeaders("Content-Type"); // Allowed headers
     });
+});
+
 
 var app = builder.Build();
 
+
 app.Urls.Add("http://localhost:5283");
-app.Urls.Add("https://localhost:7194");
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseDeveloperExceptionPage();
 } 
 
-app.UseStaticFiles();
-// Enable CORS
- app.UseCors("AllowAllOrigins");
 
-app.UseHttpsRedirection();
+
+
+app.UseRouting();
+        app.UseCors("MyPolicy");
+        app.UseStaticFiles();
+        app.UseAuthorization();
+        app.UseSwagger();
+        app.MapControllers();
+        
+
+
 
 var summaries = new[]
 {
@@ -56,7 +75,7 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
-
+    
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)

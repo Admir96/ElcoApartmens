@@ -1,53 +1,46 @@
 import React from 'react';
-import Slider from 'react-slick';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const HeroSlider: React.FC = () => {
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
-        arrows: false,
-    };
 
     return (
-        <div className="hero-slider">
-            <Slider {...settings}>
-                <div className="carousel-item">
-                    <img src="src/assets/img/carousel-1.png" className="d-block w-100" alt="..." />
-                    <div className="carousel-caption">
-                        <h1 className='carousel-h1'>Enjoy a Perfect Getaway</h1>
-                 
-                    </div>
-                </div>
-                <div className="carousel-item">
-                    <img src="src/assets/img/carousel-2.png" className="d-block w-100" alt="..." />
-                    <div className="carousel-caption">
-                        <h1 className='carousel-h1'>Escape to Luxury Living</h1>
-                    
-                    </div>
-                </div>
-                <div className="carousel-item">
-                    <img src="src/assets/img/carousel-3.png" className="d-block w-100" alt="..." />
-                    <div className="carousel-caption">
-                        <h1 className='carousel-h1'>Indulge in Pure Relaxation</h1>
+        <div className="container-fluid p-0">
+        <div className="carousel slide" data-ride="carousel">
+            <div className="carousel-inner">
+                <div className="carousel-item active">
+                    <img className="w-100" src="src\assets\img\carousel-1.png" alt="Image"/>
+                    <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div className="p-3" style={{maxWidth: "900px", marginBottom:'180px'}}>
+                            <h4 className="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                            <h1 className="display-3 text-white mb-md-4">Let's Discover The World Together</h1>
                         
+                        </div>
                     </div>
                 </div>
                 <div className="carousel-item">
-                    <img src="src/assets/img/carousel-4.png" className="d-block w-100" alt="..." />
-                    <div className="carousel-caption">
-                        <h1 className='carousel-h1'>Your Haven Awaits You</h1>
-                       
+                    <img className="w-100" src="src\assets\img\carousel-3.png" alt="Image"/>
+                    <div className="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div className="p-3" style={{maxWidth: "900px", marginBottom:'180px'}}>
+                            <h4 className="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                            <h1 className="display-3 text-white mb-md-4">Discover Amazing Places With Us</h1>
+                        </div>
                     </div>
                 </div>
-            </Slider>
+            </div>
+            <a className="carousel-control-prev" data-slide="prev">
+                <div className="btn btn-dark" style={{width: "45px", height: "45px"}}>
+                    <span className="carousel-control-prev-icon mb-n2"></span>
+                </div>
+            </a>
+            <a className="carousel-control-next" data-slide="next">
+                <div className="btn btn-dark" style={{width: "45px", height:"45px"}}>
+                    <span className="carousel-control-next-icon mb-n2"></span>
+                </div>
+            </a>
         </div>
+    </div>
     );
 };
 

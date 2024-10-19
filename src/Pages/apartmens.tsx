@@ -9,14 +9,34 @@ import { faParking } from "@fortawesome/free-solid-svg-icons/faParking";
 import { faSwimmingPool } from "@fortawesome/free-solid-svg-icons/faSwimmingPool";
 import { faEye } from "@fortawesome/free-solid-svg-icons/faEye";
 import { useNavigate } from "react-router-dom"
-import  { Apartment } from "../Services/apartmentService";
-import fetchApartments from "../Services/apartmentService";
+import axios from "axios";
+
+export interface BookingRequest {
+    Id: number;
+    CustomerName: string;
+    CustomerEmail: string;
+    PhoneNumber: string;
+    StartDate: string; 
+    EndDate: string;  
+    ApartmentId: number;
+}
+
+export interface Apartment {
+    Id: number;
+    Price: number;
+    Header: string;
+    Description: string;
+    Description2: string;
+    Amenities: string[];
+    BookingRequests: BookingRequest[]; 
+    ImageUrls: string[];
+}
 
 const Apartments: React.FC = () => {
 
     const navigate = useNavigate();
    
-    const [apartments, setApartments] = useState<Apartment[]>([]);
+    const [apartments, setApartments] = useState(Object);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -24,8 +44,11 @@ const Apartments: React.FC = () => {
     useEffect(() => {
         const loadApartments = async () => {
             try {
-                const data = await fetchApartments();
-                setApartments(data);
+                const data = await axios.get("http://localhost:5283/api/apartments");
+            
+                setApartments(data.data);
+                console.log(apartments);
+
             } catch (err) {
                 // Ensure error is of type Error
                 if (err instanceof Error) {
@@ -39,7 +62,7 @@ const Apartments: React.FC = () => {
         };
 
         loadApartments();
-    }, []);
+    },[]);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error}</div>;
@@ -50,7 +73,7 @@ const Apartments: React.FC = () => {
 
     return (
    
-        <div className="row mt-5" style={{width:'100%'}}>
+        <div className="row mt-5 mb-4" style={{width:'100%'}}>
             <h1 id='AH' style={{marginBottom:'90px'}}>Your Next Adventure Starts Here</h1>
         
         <div className="col p-0">
@@ -72,7 +95,7 @@ const Apartments: React.FC = () => {
                         <p id="desc"><FontAwesomeIcon icon={faBed} size="xs" className="me-2" />{apartments[0].amenities[5]}</p>
                         <p id="desc"><FontAwesomeIcon icon={faEye} size="xs" className="me-2" />{apartments[0].amenities[6]}</p>
                       
-                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'166%', left:'38.7%'}} onClick= {() => handleOpen(apartments[0].id)}>Details</a>
+                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'199%', left:'38.7%'}} onClick= {() => handleOpen(apartments[0].id)}>Details</a>
                     </div>
                 </div>
             </div>
@@ -97,7 +120,7 @@ const Apartments: React.FC = () => {
                         <p id="desc"><FontAwesomeIcon icon={faBed} size="xs" className="me-2" />{apartments[1].amenities[5]}</p>
                         <p id="desc"><FontAwesomeIcon icon={faEye} size="xs" className="me-2" />{apartments[1].amenities[6]}</p>
                       
-                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'166%', right:'5.5%'}} onClick= {() => handleOpen(apartments[1].id)}>Details</a>
+                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'199%', right:'5.5%'}} onClick= {() => handleOpen(apartments[1].id)}>Details</a>
                     </div>
                 </div>
             </div>
