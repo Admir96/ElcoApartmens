@@ -2,9 +2,9 @@ import Apartments from '../../Pages/apartmens';
 import Contact from '../../Pages/contact';
 import Footer from '../footer/footer';
 import '../../Pages/pages.css'
-import Slider from '../slider/slider';
-
-
+import HeroSlider from '../slider/slider';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
 
 
@@ -52,28 +52,26 @@ const  nav = () =>  {
      
        <div className="container-fluid position-relative nav-bar p-0">
         <div className="container-lg p-0 px-lg-3"style={{zIndex: "9",position:'relative', bottom:'-3px'}}>
-            <nav className="navbar navbar-expand-lg bg-light navbar-light shadow-lg py-3 py-lg-0 pl-3 pl-lg-5"  style={{borderBottomLeftRadius:'20px',borderBottomRightRadius:'20px',borderTop:'none'}}>
-     
-                <div className="collapse navbar-collapse justify-content-center px-3" id="navbarCollapse">
-                    <div className="navbar-nav ml-auto py-4">
-                        <a  className="nav-item nav-link active px-2" onClick={() => scrollToSection("Home")}>Home</a>
-                        <div className="nav-item dropdown">
-                            <a  className="nav-link dropdown-toggle px-4" data-toggle="dropdown">Apartments</a>
-                            <div className="dropdown-menu border-0 rounded-0 m-0">
-                                <a  className="dropdown-item">Apartment 1</a>
-                                <a  className="dropdown-item">Apartment 2</a>
-                            </div>
-                        </div>
-                        <a  className="nav-item nav-link"  onClick={() => scrollToSection("Contact")}>Contact</a>
-                    </div>
-                </div>
-            </nav>
+        <Navbar expand="lg" bg="light" variant="light" className="shadow-lg py-3" 
+                style={{ borderBottomLeftRadius: '20px', borderBottomRightRadius: '20px', borderTop: 'none' }}>
+            <Navbar.Toggle aria-controls="navbarCollapse" />
+            <Navbar.Collapse id="navbarCollapse" className="justify-content-center px-3">
+                <Nav className="ml-auto py-4">
+                    <Nav.Link className="active px-2" onClick={() => scrollToSection("Home")}>Home</Nav.Link>
+                    <NavDropdown title="Apartments" id="navbar-dropdown" className="px-4">
+                        <NavDropdown.Item onClick={() => scrollToSection("Apartment1")}>Apartment 1</NavDropdown.Item>
+                        <NavDropdown.Item onClick={() => scrollToSection("Apartment2")}>Apartment 2</NavDropdown.Item>
+                    </NavDropdown>
+                    <Nav.Link onClick={() => scrollToSection("Contact")}>Contact</Nav.Link>
+                </Nav>
+            </Navbar.Collapse>
+        </Navbar>
         </div>
     </div>
     </div>
       <div className="scrollspy-example" tabIndex={0}>
                 <section className='pb-4 mb-4' id="Home">
-                    <Slider />
+                    <HeroSlider />
                 </section>
                 <section className='p-4 mb-4' style={{ marginTop: '50px' }} id="Apartments">
                     <Apartments />

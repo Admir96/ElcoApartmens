@@ -50,7 +50,7 @@ const Apartments: React.FC = () => {
                 console.log(apartments);
 
             } catch (err) {
-                // Ensure error is of type Error
+            
                 if (err instanceof Error) {
                     setError(err.message);
                 } else {

@@ -338,9 +338,9 @@ i{
   align-items: center;
   justify-content: center;
   width: 15%;
-  color: #fff;
+  color: #e2e6ea !important;
   text-align: center;
-  opacity: 0.5;
+
   transition: opacity 0.15s ease;
 }
 
@@ -354,7 +354,7 @@ i{
 .carousel-control-prev:hover, .carousel-control-prev:focus,
 .carousel-control-next:hover,
 .carousel-control-next:focus {
-  color: #fff;
+  color: #e2e6ea;
   text-decoration: none;
   outline: 0;
   opacity: 0.9;
@@ -371,9 +371,10 @@ i{
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   display: inline-block;
-  width: 20px;
-  height: 20px;
+  width: 45px;
+  height: 45px;
   background: no-repeat 50% / 100% 100%;
+  margin-top: 300px;
 }
 
 .carousel-control-prev-icon {
