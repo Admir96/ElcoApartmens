@@ -1,88 +1,122 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import DatePicker from "react-datepicker"; // Make sure to import DatePicker
-import "react-datepicker/dist/react-datepicker.css"; // Import the CSS
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useParams } from "react-router-dom";
+import BookNowContact from "./bookNowContact";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { format } from "date-fns";
+
+export interface BookingRequest {
+    Id?: number;
+    CustomerName: string;
+    CustomerEmail: string;
+    StartDate: string; 
+    EndDate: string;   
+    ApartmentId: number;
+}
+
+const bookedIntervals = [
+    { start: new Date("2024-10-09"), end: new Date("2024-10-15") },
+];
 
 const Calendar: React.FC = () => {
-    const [checkInDate, setCheckInDate] = useState<Date | undefined>(undefined);
-    const [checkOutDate, setCheckOutDate] = useState<Date | undefined>(undefined);
+    const [showContactForm, setShowContactForm] = useState(false);
+    const [checkInDate, setCheckInDate] = useState<Date | undefined | null>(undefined);
+    const [checkOutDate, setCheckOutDate] = useState<Date | undefined | null>(undefined);
+    const { id } = useParams<{ id: string }>();
+
+    const handleBookingSubmit = async (data: { name: string; email: string; }) => {
+
+        if (!checkInDate || !checkOutDate) {
+            toast.error('Both check-in and check-out dates are required!');
+            return;
+        }
+        if (checkOutDate <= checkInDate) {
+            toast.error('Check-out date must be after check-in date!');
+            return;
+        }
+        if (isBooked(checkInDate) || isBooked(checkOutDate)) {
+            toast.error('Selected dates are already booked!');
+            return;
+        }
 
 
-    const bookedIntervals = [
-        { start: new Date("2024-10-09"), end: new Date("2024-10-15") },
-        // Add more booked intervals as needed
-    ];
+        const bookingData: BookingRequest = {
+            CustomerName: data.name,
+            CustomerEmail: data.email,
+            StartDate: format(checkInDate, 'yyyy-MM-dd'), 
+            EndDate: format(checkOutDate, 'yyyy-MM-dd'),   
+            ApartmentId: parseInt(id!),
+        };
 
-    const AddIntervals = (start:any, end:any) =>{
+        try {
+            console.log("Booking Data:", JSON.stringify(bookingData));
 
-        (!isBooked)
-          return bookedIntervals.push(({ start, end }));
-        
-         
-    }
-const openContactForm = () => {
+            const response = await axios.post(`http://localhost:5283/api/apartments/${id}/booking`, bookingData);
 
-    AddIntervals(checkInDate,checkOutDate);
-    console.log("Requesting dates:", { checkInDate, checkOutDate });
+            console.log("Booking Data:", response.data);
 
-     window.open(
-        '/bookNowContact?${ checkInDate, checkOutDate }',
-        '_blank',
-        'width=850,height=720,top=100,left=600'
-      );
-
-      
-    
-    }
+            toast.success('Booking request submitted successfully!');
+        } catch (error) {
+            toast.error('Booking request failed!');
+        } finally {
+            setShowContactForm(false);
+        }
+    };
 
     const isBooked = (date: Date) => {
-
-        return bookedIntervals.some(({ start, end }) => start <= date  && date <= end);
+        return bookedIntervals.some(({ start, end }) => start <= date && date <= end);
     };
 
     return (
         <Container className="mt-5">
-        <Row>
-            <Col md={6} className="mb-3">
-                <Form.Group>
-                    <Form.Label>Check-in</Form.Label>
-                    <DatePicker
-                        selected={checkInDate}
-                        onChange={(date:any) => {
-                            setCheckInDate(date);
-                            if (date) {
-                                setCheckOutDate(undefined);
-                            }
-                        }}
-                        selectsStart
-                        startDate={checkInDate}
-                        endDate={checkOutDate}
-                        filterDate={(date) => !isBooked(date)} // Disable booked dates
-                        className="form-control"
-                        placeholderText="Select Check-in Date"
-                    />
-                </Form.Group>
-            </Col>
-            <Col md={6} className="mb-3">
-                <Form.Group>
-                    <Form.Label>Check-out</Form.Label>
-                    <DatePicker
-                        selected={checkOutDate}
-                        onChange={(date:any) => setCheckOutDate(date)}
-                        selectsEnd
-                        startDate={checkInDate}
-                        endDate={checkOutDate}
-                        minDate={checkInDate ?? undefined}
-                        filterDate={(date) => !isBooked(date)} // Disable booked dates
-                        className="form-control"
-                        placeholderText="Select Check-out Date"
-                    />
-                </Form.Group>
-            </Col>
-        </Row>
-            <Button id="Button" variant="secondary" disabled={!checkInDate && !checkOutDate} onClick = {openContactForm}>
-                Book Now
-            </Button>
+            <Row>
+                <Col md={6} className="mb-3">
+                    <Form.Group>
+                        <Form.Label>Check-in</Form.Label>
+                        <DatePicker
+                            selected={checkInDate}
+                            onChange={(date: Date | null) => {
+                                setCheckInDate(date);
+                                if (date) {
+                                    setCheckOutDate(undefined);
+                                }
+                            }}
+                            selectsStart
+                            startDate={checkInDate || undefined}
+                            endDate={checkOutDate || undefined}
+                            filterDate={(date) => !isBooked(date)} // Disable booked dates
+                            className="form-control"
+                            placeholderText="Select Check-in Date"
+                        />
+                    </Form.Group>
+                </Col>
+                <Col md={6} className="mb-3">
+                    <Form.Group>
+                        <Form.Label>Check-out</Form.Label>
+                        <DatePicker
+                            selected={checkOutDate}
+                            onChange={(date:Date | null ) => setCheckOutDate(date)}
+                            selectsEnd
+                            startDate={checkInDate || undefined}
+                            endDate={checkOutDate || undefined}
+                            minDate={checkInDate ?? undefined}
+                            filterDate={(date) => !isBooked(date)} // Disable booked dates
+                            className="form-control"
+                            placeholderText="Select Check-out Date"
+                        />
+                    </Form.Group>
+                </Col>
+            </Row>
+            <Button onClick={() => setShowContactForm(true)}>Book Now</Button>
+            {showContactForm && (
+                <BookNowContact onSubmit={handleBookingSubmit} 
+                startDate={format(checkInDate!, 'yyyy-MM-dd')} 
+                    endDate={format(checkOutDate!, 'yyyy-MM-dd')} />
+               
+            )}
         </Container>
     );
 };

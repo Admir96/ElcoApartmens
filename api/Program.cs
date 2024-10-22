@@ -24,9 +24,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("MyPolicy", builder =>
     {
-        builder.WithOrigins("*") // Replace with your frontend URL
-               .WithMethods("GET", "POST", "PUT", "DELETE") // Allowed methods
-               .WithHeaders("Content-Type"); // Allowed headers
+        builder.WithOrigins("*") 
+               .WithMethods("GET", "POST", "PUT", "DELETE")
+               .WithHeaders("Content-Type");
     });
 });
 

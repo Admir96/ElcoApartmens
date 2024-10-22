@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'; // Using Leaflet for the map
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'; 
 import 'leaflet/dist/leaflet.css';
 import { LatLngExpression } from 'leaflet';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -19,7 +19,7 @@ const MapWithForm: React.FC = () => {
         formState: { errors },
       } = useForm<FormValues>();
 
-    const position: LatLngExpression = [51.505, -0.09]; // Set initial map position
+    const position: LatLngExpression = [51.505, -0.09]; 
 
 
     const OnSubmit: SubmitHandler<FormValues> = (data) => {

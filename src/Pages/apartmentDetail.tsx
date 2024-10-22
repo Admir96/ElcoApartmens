@@ -182,15 +182,7 @@ const ApartmentDetail: React.FC = () => {
                         <li id="descA" className="mb-2"><FontAwesomeIcon icon={faBed} className="me-3" />{apartments?.amenities[5]}</li>
                         <li id="descA" className="mb-2"><FontAwesomeIcon icon={faEye} className="me-3" />{apartments?.amenities[6]}</li>
                     </ul>
-                    </div>
-                    <div className="col" style={{position:'absolute', top:'101%', left:'46%'}}>
-                    <h4 className="font-weight-bold mb-4">Google Reviews</h4>
-                    <div className="text-muted">
-                        <p className="descA">"Amazing stay! The apartment was beautiful and well-equipped." - ⭐⭐⭐⭐⭐</p>
-                        <p className="descA">"Perfect location, close to everything we wanted to see." - ⭐⭐⭐⭐⭐</p>
-                        <p className="descA">"Very clean and comfortable. Highly recommend!" - ⭐⭐⭐⭐⭐</p>
-                    </div>
-                    </div>
+                    </div>            
               </div>
                 </div>
             </div>

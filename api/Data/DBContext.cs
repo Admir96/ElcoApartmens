@@ -66,9 +66,8 @@ public class DBContext : DbContext{
                             Id = 1,
                             CustomerName = "Alice Johnson",
                             CustomerEmail = "alice@example.com",
-                            PhoneNumber = "555-1234",
-                            StartDate = new DateOnly(2024, 10, 17),
-                            EndDate = new DateOnly(2024, 10, 20),
+                            StartDate = new DateTime(2024-10-17),
+                            EndDate = new DateTime(2024, 10, 20),
                             ApartmentId = 1
                         },
                         new BookingRequests
@@ -76,9 +75,8 @@ public class DBContext : DbContext{
                             Id = 2,
                             CustomerName = "Bob Smith",
                             CustomerEmail = "bob@example.com",
-                            PhoneNumber = "555-5678",
-                            StartDate = new DateOnly(2024, 10, 25),
-                            EndDate = new DateOnly(2024, 10, 30),
+                            StartDate = new DateTime(2024, 10, 25),
+                            EndDate = new DateTime(2024, 10, 30),
                             ApartmentId = 1
                         },
                           new BookingRequests
@@ -86,9 +84,9 @@ public class DBContext : DbContext{
                             Id = 3,
                             CustomerName = "Charlie Brown",
                             CustomerEmail = "charlie@example.com",
-                            PhoneNumber = "555-8765",
-                            StartDate = new DateOnly(2024, 11, 1),
-                            EndDate = new DateOnly(2024, 11, 5),
+
+                            StartDate = new DateTime(2024, 11, 1),
+                            EndDate = new DateTime(2024, 11, 5),
                             ApartmentId = 2
                         }
                     );

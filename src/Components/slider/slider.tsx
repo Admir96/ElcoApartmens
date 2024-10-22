@@ -7,7 +7,7 @@ const HeroSlider: React.FC = () => {
     const sliderRef = useRef<Slider>(null);
     const [currentSlide, setCurrentSlide] = useState(0);
 
-    // Settings for the slick slider
+  
     const settings = {
         dots: false,
         infinite: true,
@@ -15,7 +15,7 @@ const HeroSlider: React.FC = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false, 
-        beforeChange: (current: number, next: number) => setCurrentSlide(next), // Update current slide
+        beforeChange: (current: number, next: number) => setCurrentSlide(next)
     };
 
     const slides = [
@@ -55,7 +55,7 @@ const HeroSlider: React.FC = () => {
                     <li
                         key={index}
                         className={`active ${currentSlide === index ? 'active' : ''}`}
-                        onClick={() => sliderRef.current?.slickGoTo(index)} // Go to the slide when clicked
+                        onClick={() => sliderRef.current?.slickGoTo(index)} 
                     />
                 ))}
             </ol>

@@ -99,15 +99,11 @@ namespace api.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateOnly>("EndDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateOnly>("StartDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -122,9 +118,8 @@ namespace api.Data.Migrations
                             ApartmentId = 1,
                             CustomerEmail = "alice@example.com",
                             CustomerName = "Alice Johnson",
-                            EndDate = new DateOnly(2024, 10, 20),
-                            PhoneNumber = "555-1234",
-                            StartDate = new DateOnly(2024, 10, 17)
+                            EndDate = new DateTime(2024, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1997)
                         },
                         new
                         {
@@ -132,9 +127,8 @@ namespace api.Data.Migrations
                             ApartmentId = 1,
                             CustomerEmail = "bob@example.com",
                             CustomerName = "Bob Smith",
-                            EndDate = new DateOnly(2024, 10, 30),
-                            PhoneNumber = "555-5678",
-                            StartDate = new DateOnly(2024, 10, 25)
+                            EndDate = new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
@@ -142,9 +136,8 @@ namespace api.Data.Migrations
                             ApartmentId = 2,
                             CustomerEmail = "charlie@example.com",
                             CustomerName = "Charlie Brown",
-                            EndDate = new DateOnly(2024, 11, 5),
-                            PhoneNumber = "555-8765",
-                            StartDate = new DateOnly(2024, 11, 1)
+                            EndDate = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 

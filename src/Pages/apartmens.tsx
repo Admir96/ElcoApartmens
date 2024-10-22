@@ -95,7 +95,7 @@ const Apartments: React.FC = () => {
                         <p id="desc"><FontAwesomeIcon icon={faBed} size="xs" className="me-2" />{apartments[0].amenities[5]}</p>
                         <p id="desc"><FontAwesomeIcon icon={faEye} size="xs" className="me-2" />{apartments[0].amenities[6]}</p>
                       
-                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'199%', left:'38.7%'}} onClick= {() => handleOpen(apartments[0].id)}>Details</a>
+                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'217%', left:'38.7%'}} onClick= {() => handleOpen(apartments[0].id)}>Details</a>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@ const Apartments: React.FC = () => {
                         <p id="desc"><FontAwesomeIcon icon={faBed} size="xs" className="me-2" />{apartments[1].amenities[5]}</p>
                         <p id="desc"><FontAwesomeIcon icon={faEye} size="xs" className="me-2" />{apartments[1].amenities[6]}</p>
                       
-                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'199%', right:'5.5%'}} onClick= {() => handleOpen(apartments[1].id)}>Details</a>
+                        <a  id='btn' className="btn btn-primary py-2 px-5 mt-4"  style={{position:'absolute', top:'217%', right:'5.5%'}} onClick= {() => handleOpen(apartments[1].id)}>Details</a>
                     </div>
                 </div>
             </div>

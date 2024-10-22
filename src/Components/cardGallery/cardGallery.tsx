@@ -10,7 +10,7 @@ interface ImageGalleryProps {
 
 const Gallery: React.FC<ImageGalleryProps> = ({ images, id }) => {
     
-    const [currentIndex, setCurrentIndex] = useState(Number); // Tracking the current image index
+    const [currentIndex, setCurrentIndex] = useState(Number); 
   
 
     const nextImage = () => {
