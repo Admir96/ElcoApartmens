@@ -102,6 +102,9 @@ namespace api.Data.Migrations
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -119,6 +122,7 @@ namespace api.Data.Migrations
                             CustomerEmail = "alice@example.com",
                             CustomerName = "Alice Johnson",
                             EndDate = new DateTime(2024, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsApproved = false,
                             StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1997)
                         },
                         new
@@ -128,6 +132,7 @@ namespace api.Data.Migrations
                             CustomerEmail = "bob@example.com",
                             CustomerName = "Bob Smith",
                             EndDate = new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsApproved = false,
                             StartDate = new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
@@ -137,6 +142,7 @@ namespace api.Data.Migrations
                             CustomerEmail = "charlie@example.com",
                             CustomerName = "Charlie Brown",
                             EndDate = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsApproved = false,
                             StartDate = new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });

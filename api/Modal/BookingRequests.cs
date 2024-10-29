@@ -6,7 +6,7 @@ namespace api.Modal
   public class BookingRequests
 {   
  
-  [Key]
+ [Key]
     public int Id { get; set; }
 
     [Required]
@@ -23,5 +23,7 @@ namespace api.Modal
     public DateTime EndDate { get; set; }
 
     public int ApartmentId { get; set; }
+ 
+    public bool IsApproved { get; set; } = false; 
 }
 }

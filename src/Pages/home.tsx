@@ -7,6 +7,6 @@ function  home()  {
     <Nav></Nav>
     );
       
-};
+}
 
 export default home

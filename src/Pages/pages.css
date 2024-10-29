@@ -1205,3 +1205,46 @@ border-color:  rgb(0, 30, 80) !important;
 
   background-color: rgb(0, 40, 100);
 }
+
+.booking-list {
+  list-style-type: none; 
+  padding: 0;
+}
+
+.booking-item {
+  border: 1px solid #ccc; 
+  border-radius: 5px; 
+  margin: 10px 0; 
+  padding: 15px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  background-color: #f9f9f9; 
+  transition: background-color 0.3s; 
+}
+
+.booking-item:hover {
+  background-color: #eaeaea; 
+}
+
+.booking-details {
+  display: flex;
+  flex-direction: column; }
+
+.booking-actions {
+  display: flex; 
+  gap: 10px; 
+}
+
+.booking-actions button {
+  padding: 10px 15px; 
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.booking-actions button:hover {
+  background-color: #007bff; 
+  color: white;
+}
+

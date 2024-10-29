@@ -30,7 +30,7 @@ const ApartmentDetail: React.FC = () => {
                 const data = await axios.get(`http://localhost:5283/api/apartments/${id}`);
                 setApartments(data.data);
             } catch (err) {
-                // Ensure error is of type Error
+                
                 if (err instanceof Error) {
                     setError(err.message);
                 } else {

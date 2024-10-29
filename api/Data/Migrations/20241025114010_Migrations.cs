@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace api.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class MigrationName : Migration
+    public partial class Migrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -41,7 +41,8 @@ namespace api.Data.Migrations
                     CustomerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ApartmentId = table.Column<int>(type: "int", nullable: false)
+                    ApartmentId = table.Column<int>(type: "int", nullable: false),
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -65,12 +66,12 @@ namespace api.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "BookingRequest",
-                columns: new[] { "Id", "ApartmentId", "CustomerEmail", "CustomerName", "EndDate", "StartDate" },
+                columns: new[] { "Id", "ApartmentId", "CustomerEmail", "CustomerName", "EndDate", "IsApproved", "StartDate" },
                 values: new object[,]
                 {
-                    { 1, 1, "alice@example.com", "Alice Johnson", new DateTime(2024, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1997) },
-                    { 2, 1, "bob@example.com", "Bob Smith", new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, 2, "charlie@example.com", "Charlie Brown", new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, 1, "alice@example.com", "Alice Johnson", new DateTime(2024, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), false, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified).AddTicks(1997) },
+                    { 2, 1, "bob@example.com", "Bob Smith", new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), false, new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 2, "charlie@example.com", "Charlie Brown", new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), false, new DateTime(2024, 11, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(

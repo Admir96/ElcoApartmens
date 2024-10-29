@@ -15,6 +15,7 @@ export interface BookingRequest {
     StartDate: string; 
     EndDate: string;   
     ApartmentId: number;
+    IsApproved:boolean;
 }
 
 const bookedIntervals = [
@@ -49,12 +50,13 @@ const Calendar: React.FC = () => {
             StartDate: format(checkInDate, 'yyyy-MM-dd'), 
             EndDate: format(checkOutDate, 'yyyy-MM-dd'),   
             ApartmentId: parseInt(id!),
+            IsApproved:false
         };
 
         try {
             console.log("Booking Data:", JSON.stringify(bookingData));
 
-            const response = await axios.post(`http://localhost:5283/api/apartments/${id}/booking`, bookingData);
+            const response = await axios.post(`http://localhost:5283/api/booking`, bookingData);
 
             console.log("Booking Data:", response.data);
 

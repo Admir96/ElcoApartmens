@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 
-[Route("api/apartments/{apartmentId}/[controller]")] 
+[Route("api/[controller]")]
 [ApiController]
 public class BookingController : ControllerBase
 {
@@ -15,22 +15,34 @@ public class BookingController : ControllerBase
         _context = context;
     }
 
-    // GET: api/apartments/{apartmentId}/Booking
+
+ 
     [HttpGet]
+    public async Task<ActionResult<BookingRequests>> GetAllBookingRequests()
+    {
+         var bookings = await _context.BookingRequest.ToListAsync();
+         
+           if (bookings == null || !bookings.Any())
+         return NotFound(); 
+        
+
+       return Ok(bookings);
+    }
+
+   
+    [HttpGet("apartments/{apartmentId}")]
     public async Task<ActionResult<IEnumerable<BookingRequests>>> GetBookings(int apartmentId)
     {
-
         return await _context.BookingRequest
             .Where(b => b.ApartmentId == apartmentId)
             .ToListAsync();
     }
 
-    // GET: api/apartments/{apartmentId}/Booking/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<BookingRequests>> GetBooking(int apartmentId, int id)
+    public async Task<ActionResult<BookingRequests>> GetBooking(int id)
     {
-        var booking = await _context.BookingRequest
-            .FirstOrDefaultAsync(b => b.Id == id && b.ApartmentId == apartmentId);
+        var booking = await _context.BookingRequest.FindAsync(id);
+            
 
         if (booking == null)
         {
@@ -40,10 +52,15 @@ public class BookingController : ControllerBase
         return booking;
     }
 
-    // POST: api/apartments/{apartmentId}/Booking
+
     [HttpPost]
     public async Task<ActionResult<BookingRequests>> PostBooking(BookingRequests booking)
     {
+
+         if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
 
         booking.ApartmentId = booking.ApartmentId; 
 
@@ -53,39 +70,24 @@ public class BookingController : ControllerBase
         return CreatedAtAction("GetBooking", new { apartmentId = booking.ApartmentId, id = booking.Id }, booking);
     }
 
-    // PUT: api/apartments/{apartmentId}/Booking/5
-    [HttpPut("{id}")]
-    public async Task<IActionResult> PutBooking(int apartmentId, int id, BookingRequests booking)
+         [HttpPut("{id}")]
+    public async Task<IActionResult> ApproveBookingRequest(int id, [FromBody] bool isApproved)
     {
-        if (id != booking.Id)
+       
+    
+        var request = await _context.BookingRequest.FindAsync(id);
+        
+        if (request == null)
         {
-            return BadRequest();
+            return NotFound();
         }
 
-        booking.ApartmentId = apartmentId; 
-
-        _context.Entry(booking).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!BookingExists(id))
-            {
-                return NotFound();
-            }
-            else
-            {
-                throw;
-            }
-        }
-
+        request.IsApproved = isApproved;
+        await _context.SaveChangesAsync();
         return NoContent();
     }
 
-    // DELETE: api/apartments/{apartmentId}/Booking/5
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteBooking(int apartmentId, int id)
     {

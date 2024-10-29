@@ -56,7 +56,8 @@ public class DBContext : DbContext{
                                      "http://localhost:5283/img/pexels-s3t-koncepts-1636465088-28853343.png",
                                      "http://localhost:5283/img/pexels-s3t-koncepts-1636465088-28853343.png",
                                       "http://localhost:5283/img/pexels-s3t-koncepts-1636465088-28853343.png"
-                                       }
+                                       },
+                                       
                   });
 
                   modelBuilder.Entity<BookingRequests>().HasData(
@@ -68,7 +69,8 @@ public class DBContext : DbContext{
                             CustomerEmail = "alice@example.com",
                             StartDate = new DateTime(2024-10-17),
                             EndDate = new DateTime(2024, 10, 20),
-                            ApartmentId = 1
+                            ApartmentId = 1,
+                            IsApproved=false
                         },
                         new BookingRequests
                         {
@@ -77,7 +79,8 @@ public class DBContext : DbContext{
                             CustomerEmail = "bob@example.com",
                             StartDate = new DateTime(2024, 10, 25),
                             EndDate = new DateTime(2024, 10, 30),
-                            ApartmentId = 1
+                            ApartmentId = 1,
+                             IsApproved=false
                         },
                           new BookingRequests
                         {
@@ -87,7 +90,8 @@ public class DBContext : DbContext{
 
                             StartDate = new DateTime(2024, 11, 1),
                             EndDate = new DateTime(2024, 11, 5),
-                            ApartmentId = 2
+                            ApartmentId = 2,
+                             IsApproved=false
                         }
                     );
 
